@@ -1,0 +1,168 @@
+/*************** GENERAL ******************/
+h1 {
+    font-size: 4rem;
+    margin-top: 30px;
+    color: rgb(99,174,155);
+    font-family: 'Sacramento', cursive;
+    line-height: 2;
+}
+h2 {
+    color: rgb(99,174,155);
+    font-weight: normal;
+    font-size: 3rem;
+    padding-bottom: 10px;
+}
+h3 {
+    color: #86C8BC;
+    font-size: 2rem;
+}
+a {
+    color: #40514E;
+    font-family: 'Raleway', sans-serif;
+    margin: 10px 20px; 
+    text-decoration: none; 
+}
+a:hover {
+    color: rgb(99,174,155);
+}
+hr {
+    border-style: none;
+    border-top-style: dotted;
+    border-color: #FFD4B2;
+    border-width: 5px;
+    width: 4%;
+    margin: 50px auto;
+}
+body {
+    color: #40514E;
+    background-color: #FFFFE8;
+    margin: 0;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+p {
+    line-height: 2;
+    font-size: 1.2rem;
+}
+
+/*************** INTRODUCTION ***************/
+.introduction {
+    background-color: #E9EDC9;
+    height: 380px;
+    padding: 10%;;
+}
+.briefdescrip {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5rem;
+}
+.sun {
+    position: absolute;
+    right: 10%;
+    top: 2%;
+    height: 60px; 
+    width: auto;
+}
+.profile {
+    padding-top: 20px;
+    line-height: 2;
+}
+.intro {
+    width: 40%; 
+    margin: auto;
+}
+.flower {
+    position: absolute;
+    height: 50px;
+    left: 47%;
+    width: auto;
+}
+/*************** BODY ***************/
+.body {
+    font-family: 'Raleway', sans-serif;
+    margin: 50px 0;
+}
+
+/*************** RESEARCH ***************/
+.research-row {
+    width:50%;
+    margin: 100px auto 100px auto; 
+    text-align: left;
+    line-height: 2;
+}
+.happy-img {
+    width: 25%;
+    float: left;
+    margin-right: 30px;
+}
+.music-img {
+    width: 25%;
+    float: right;
+    margin-left: 30px; 
+}
+.monkey-img {
+    width: 25%;
+    float: left; 
+    margin-right: 30px;
+}
+.vision-img {
+    width: 25%;
+    float: right;
+    margin-left: 30px;
+}
+
+/*************** SKILLS ***************/
+.skill-web {
+    width: 50%;
+    margin: 100px auto 100px auto;
+    text-align: left;
+    line-height: 2;
+}
+.skill-data {
+    width: 50%;
+    margin: 100px auto 100px auto; 
+    text-align: right; 
+    line-height: 2;
+}
+.web-dev {
+    width: 25%; 
+    float: left; 
+    margin-right: 30px;
+}
+.data-img {
+    width: 25%;
+    float: right; 
+    margin-left: 30px;
+}
+
+/*************** ENDING ***************/
+.ending {
+    background-color: #D7E9B9;
+    padding: 50px 0 20px;
+}
+.contact-message {
+    width: 45%; 
+    margin: 40px auto 60px;
+}
+.btn {
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    font-family: 'Raleway', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    background: #63ae9b;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+.btn:hover {
+    background: #86c8bc;
+    text-decoration: none;
+}
+.copyright {
+    color: rgb(99,174,155);
+    font-size: 0.75rem;
+    padding: 20px 0; 
+}
+.footer-link {
+    font-size: 1rem;
+}
