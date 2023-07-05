@@ -1,40 +1,45 @@
 /*************** GENERAL ******************/
 h1 {
-    font-size: 4rem;
-    margin-top: 30px;
-    color: rgb(255, 255, 255);
-    font-family: 'Sacramento', cursive;
+    font-weight: 400;
+    font-size: 2rem; 
     line-height: 2;
+    color: rgb(255,255,255);
+    font-family: "Raleway"; 
 }
 h2 {
-    color: rgb(255, 255, 255);
-    font-weight: normal;
-    font-size: 3rem;
-    padding-bottom: 10px;
+    font-weight: 100; 
+    font-size: 2rem; 
+    line-height: 1;
+    color: rgb(255,255,255);
+    font-family: "Raleway"; 
 }
 h3 {
-    color: #ffffff;
-    font-size: 2rem;
+    font-size: 0.5rem; 
+    font-family: "Raleway"; 
+    color: rgb(255,255,255);
+}
+h4 {
+    font-size: 0.2rem; 
+    font-family: "Raleway";
+    color: rgb(255,255,255);
 }
 a {
-    color: #ffffff;
-    font-family: 'Raleway', sans-serif;
-    margin: 10px 20px; 
-    text-decoration: none; 
+    color: rgb(255,255,255);
+    font-family: "Raleway"; 
 }
 a:hover {
-    color: rgb(255, 255, 255);
+    color: rgb(99,174,155);
 }
 hr {
     border-style: none;
     border-top-style: dotted;
-    border-color: #ffffff;
+    border-color: #FFD4B2;
     border-width: 5px;
     width: 4%;
     margin: 50px auto;
 }
 body {
-    color: #40514E;
+    color: #ffffff;
     background-color: #000000;
     margin: 0;
     text-align: center;
@@ -43,27 +48,42 @@ body {
 p {
     line-height: 2;
     font-size: 1.2rem;
-    color: #ffffff;
 }
-.container-fluid {
-    padding: 0% 15%; 
-}
-
 
 /*************** NAVIGATION BAR ****************/
+.container-fluid {
+    padding: 0% 0%;
+}
 .navbar {
-    padding: 0; 
+    padding: 0%;
+    background-color: rgb(255, 255, 255);
 }
 .navbar-brand {
-    font-family: "Cinzel Decorative";
+    font-family: "Arial";
+    margin-top: 5px; 
 }
 .nav-link {
-    font-family: "Arial"; 
-    margin-top: 10px; 
+    font-family: "Raleway"; 
+    margin-top: 5px; 
 }
 .nav-item {
-    padding: 0 15px; 
+    padding: 0 5px;
 }
+
+/*************** COVER ******************/
+.cover-date {
+    font-size: 1rem;
+}
+.cover-title {
+    font-size: 1.0rem;
+    font-family: "Arial";
+}
+.cover {
+    background-color: rgb(0,0,0);
+    text-align: center;
+    padding: 150px 150px 150px 150px;
+}
+
 
 
 
@@ -85,7 +105,6 @@ p {
     width: 40%; 
     margin: auto;
 }
-
 /*************** BODY ***************/
 .body {
     font-family: 'Raleway', sans-serif;
