@@ -21,39 +21,40 @@
 
 <body>
     <section id="title">
-        <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #000000;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/shengbin.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" style="color: #ffffff;" aria-current="page" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #ffffff;" href="resume.html">Resume</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #ffffff;" href="research.html">Research</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #ffffff;" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+        <div class="container-fluid"> 
+            <!-- Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(16,16,16);">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/shengbin.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" style="color: #ffffff;" aria-current="page" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #ffffff;" href="resume.html">Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #ffffff;" href="research.html">Research</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #ffffff;" href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </section>
-    <hr>
 
     <section id="cover">
         <div class="cover">
@@ -67,18 +68,29 @@
                             <h3 class="cover-title">
                                 LOREM IPSUM #1
                             </h3>
-                            <img src="images/20230705.jpg" class="cover-image" width="400" height="400">
+                            <img src="images/20230705.jpg" class="cover-image" width="700" height="400">
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="featured-box d-block w-100" alt="second slide">
                             <h4 class="cover-date">
-                                July 5th, 2023
+                                July 4th, 2023
                             </h4>
                             <h3 class="cover-title">
                                 LOREM IPSUM #2
                             </h3>
-                            <img src="images/20230704.heic" class="cover-image" width="400" height="400">
+                            <img src="images/20230704.jpg" class="cover-image" width="700" height="400">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="featured-box d-block w-100" alt="third slide">
+                            <h4 class="cover-date">
+                                July 3rd, 2023
+                            </h4>
+                            <h3 class="cover-title">
+                                LOREM IPSUM #3
+                            </h3>
+                            <img src="images/20230703.jpg" class="cover-image" width="700" height="400">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#featured-cover" role="button" data-bs-slide="prev">
@@ -93,59 +105,41 @@
             </div>
         </div>
     </section>
-    <hr>
 
-
-    <div class="introduction">
-        <h1>I'm Shengbin. </h1>
-        <p class="briefdescrip">Ph.D. Student</p>
-        <p class="briefdescrip">Cognitive Neuroscience based in Japan. </p>
-    </div>
-
-    <div class="body">
-        <div class="profile">
-            <h2>Hello.</h2>
-            <p class="intro">
-                I'm a Ph.D. student at Osaka University majoring in cognitive neuroscience. 
-            </p>
+    <section id="intro">
+        <div class="intro">
+            <div class="col-lg-12">
+                <h3 class="intro-name" id="name">Shengbin Cui.</h3>
+                <p class="intro-descrip">I am a Ph.D. student in the Dynamic Brain</p> 
+                <p class="intro-descrip">Network Laboratory, Department of Physiology,</p>
+                <p class="intro-descrip">Graduate School of Medicine at Osaka University.</p>
+                <p class="intro-descrip">My research is focused mainly on interoception,</p>
+                <p class="intro-descrip">which refers to the ability to perceive information</p>
+                <p class="intro-descrip">within our own body.</p>
+            </div>
         </div>
-        <hr>
-        
+    </section>
+
+    <section id="body">
         <div class="research">
             <h2>My Research.</h2>
             <div class="research-row">
                 <img class="happy-img" src="https://media.giphy.com/media/chzz1FQgqhytWRWbp3/giphy.gif" alt="happy-face">
-                <h3>Self & Emotion</h3>
-                <p>
+                <h3 class="research-title">Self & Emotion</h3>
+                <p class="research-descrip">
                     I am investigating how human processes our own facial expressions differently from others' facial expressions with electrophysiological measure. 
                 </p>
             </div>
             <div class="research-row">
-                <img class="music-img" src="https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif" alt="music-img">
-                <h3>Music & Emotion</h3>
-                <p>
-                    I am investigating human's neural mechanism of music-evoked emotions with electrophysiological measure. 
-                </p>
-            </div>
-            <div class="research-row">
-                <img class="monkey-img" src="https://media.giphy.com/media/8nhgZZMKUicpi/giphy.gif" alt="monkey-img">
-                <h3>Evolution of Music</h3>
-                <p>
-                    I am investigating in which species music arose by focusing on the music-evoked emotions between primates and human beings.
-                </p>
-            </div>
-            <div class="research-row">
                 <img class="vision-img" src="https://media.giphy.com/media/MaThe6p8WAKbf9NDDM/giphy-downsized-large.gif" alt="vision-img">
-                <h3>Visual Motion Perception</h3>
-                <p>
+                <h3 class="researach-title">Visual Motion Perception</h3>
+                <p class="research-descrip">
                     I investigated how language influences human's streaming and bouncing percepts. 
                     It turns out that when the word labels representing "streaming" and "bouncing" were removed, 
                     the tendency of perceiving bouncing percept was also disappeared. 
                 </p>
             </div>
         </div>
-        <hr>
-
         <div class="skills">
             <h2>My Skills.</h2>
             <div class="skill-web">
@@ -159,8 +153,9 @@
                 <p>MATLAB, Python, R</p>
             </div>
         </div>
-        <hr>
+    </section>
 
+    <section id="contact">
         <div class="contact-me">
             <h2>Get In Touch</h2>
             <h3>Let's found out correspondences. </h3>
@@ -169,12 +164,11 @@
             </p>
             <a class="btn" href="mailto:shengbin.cui.1230@gmail.com">CONTACT ME</a>
         </div>
-    </div>
-    
-    <div class="ending">
-        <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
-        <a class="footer-link" href="https://twitter.com/1230Shengbin">Twitter</a>
-        <p class="copyright">© 2023 Shengbin Cui.</p>
-    </div>
+        <div class="ending">
+            <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
+            <a class="footer-link" href="https://twitter.com/1230Shengbin">Twitter</a>
+            <p class="copyright">© 2023 Shengbin Cui.</p>
+        </div>
+    </section>
 </body>
 </html>
