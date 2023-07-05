@@ -1,26 +1,31 @@
 /*************** GENERAL ******************/
 h1 {
-    font-size: 4rem;
-    margin-top: 30px;
-    color: rgb(99,174,155);
-    font-family: 'Sacramento', cursive;
+    font-weight: 400;
+    font-size: 2rem; 
     line-height: 2;
+    color: rgb(255,255,255);
+    font-family: "Raleway"; 
 }
 h2 {
-    color: rgb(99,174,155);
-    font-weight: normal;
-    font-size: 3rem;
-    padding-bottom: 10px;
+    font-weight: 100; 
+    font-size: 2rem; 
+    line-height: 1;
+    color: rgb(255,255,255);
+    font-family: "Raleway"; 
 }
 h3 {
-    color: #86C8BC;
-    font-size: 2rem;
+    font-size: 0.5rem; 
+    font-family: "Raleway"; 
+    color: rgb(255,255,255);
+}
+h4 {
+    font-size: 0.2rem; 
+    font-family: "Raleway";
+    color: rgb(255,255,255);
 }
 a {
-    color: #40514E;
-    font-family: 'Raleway', sans-serif;
-    margin: 10px 20px; 
-    text-decoration: none; 
+    color: rgb(255,255,255);
+    font-family: "Raleway"; 
 }
 a:hover {
     color: rgb(99,174,155);
@@ -34,8 +39,8 @@ hr {
     margin: 50px auto;
 }
 body {
-    color: #40514E;
-    background-color: #FFFFE8;
+    color: #ffffff;
+    background-color: #000000;
     margin: 0;
     text-align: center;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -45,22 +50,52 @@ p {
     font-size: 1.2rem;
 }
 
+/*************** NAVIGATION BAR ****************/
+.container-fluid {
+    padding: 0% 0%;
+}
+.navbar {
+    padding: 0%;
+    background-color: rgb(255, 255, 255);
+}
+.navbar-brand {
+    font-family: "Arial";
+    margin-top: 5px; 
+}
+.nav-link {
+    font-family: "Raleway"; 
+    margin-top: 5px; 
+}
+.nav-item {
+    padding: 0 5px;
+}
+
+/*************** COVER ******************/
+.cover-date {
+    font-size: 1rem;
+}
+.cover-title {
+    font-size: 1.0rem;
+    font-family: "Arial";
+}
+.cover {
+    background-color: rgb(0,0,0);
+    text-align: center;
+    padding: 150px 150px 150px 150px;
+}
+
+
+
+
 /*************** INTRODUCTION ***************/
 .introduction {
-    background-color: #E9EDC9;
+    background-color: #000000;
     height: 380px;
     padding: 10%;;
 }
 .briefdescrip {
     font-family: 'Raleway', sans-serif;
     font-size: 1.5rem;
-}
-.sun {
-    position: absolute;
-    right: 10%;
-    top: 2%;
-    height: 60px; 
-    width: auto;
 }
 .profile {
     padding-top: 20px;
@@ -69,12 +104,6 @@ p {
 .intro {
     width: 40%; 
     margin: auto;
-}
-.flower {
-    position: absolute;
-    height: 50px;
-    left: 47%;
-    width: auto;
 }
 /*************** BODY ***************/
 .body {
