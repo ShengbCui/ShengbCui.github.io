@@ -41,7 +41,7 @@ hr {
 }
 body {
     color: #ffffff;
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     margin: 0;
     text-align: center;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -50,7 +50,7 @@ body {
 
 /*************** NAVIGATION BAR ****************/
 .container-fluid {
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
 }
 .navbar {
     padding: 0%;
@@ -71,21 +71,25 @@ body {
 /*************** COVER ******************/
 .cover-date {
     font-size: 1rem;
+    color: rgb(213,206,163); 
 }
 .cover-title {
     font-size: 1.4rem;
     font-family: "Arial";
+    color: rgb(229,229,203)
+}
+.cover-image {
+    object-fit: cover;
 }
 .cover {
-    background-color: rgb(16,16,16);
-    text-align: center;
+    background-color: rgb(26,18,11);
+    text-align: left;
     padding: 10% 5% 10% 5%;
-    margin-top: 0px;
 }
 
 /**************** INTRO ***************/ 
 .intro {
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     padding: 10% 5%;
     text-align: center;
 }
@@ -93,14 +97,14 @@ body {
     font-family: "Cinzel Decorative"; 
     font-weight: 100; 
     line-height: 1.4; 
-    font-size: 1.4rem; 
+    font-size: 2rem; 
     padding: 0.25%; 
     text-align: center;
     margin-bottom: 5%
 }
 .intro-descrip {
     font-family: "Raleway"; 
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: rgb(255,255,255);
 }
 
@@ -108,7 +112,7 @@ body {
 #latest {
     padding: 10% 5% 10% 5%;
     text-align: left;
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     color: rgb(255,255,255);
 }
 .latest-description {
@@ -131,7 +135,7 @@ body {
 
 /*************** CONTACT ****************/
 .contact-me {
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     color: rgb(255,255,255);
     text-align: center;
 }
@@ -139,7 +143,7 @@ body {
     font-family: "Cinzel Decorative"; 
     font-weight: 100; 
     line-height: 1.4; 
-    font-size: 1.4rem; 
+    font-size: 2rem; 
     padding: 0.25%; 
     text-align: center;
     margin-bottom: 5% 
@@ -155,11 +159,9 @@ body {
     color: rgb(255,255,255);
 }
 
-
-
 /*************** ENDING ***************/
 .ending {
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     padding: 50px 0 20px;
     color: rgb(255,255,255);
     text-align: center;
@@ -192,9 +194,17 @@ body {
     font-size: 1rem;
 }
 
+
+/*************** RESUME ****************/ 
+.resume {
+    background-color: rgb(26,18,11);
+    color: rgb(255,255,255);
+    text-align: center;
+}
+
 /*************** RESEARCH ***************/
 .research {
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     color: rgb(255,255,255);
     text-align: center;
     padding: 10% 5%; 
@@ -214,19 +224,19 @@ body {
     line-height: 2;
 }
 .happy-img {
-    width: 25%;
+    width: 20%;
     float: left;
     margin-right: 30px;
 }
 .vision-img {
-    width: 25%;
+    width: 20%;
     float: right;
     margin-left: 30px;
 }
 
 /*************** SKILLS ***************/
 .skills {
-    background-color: rgb(16,16,16);
+    background-color: rgb(26,18,11);
     color: rgb(255,255,255);
     text-align: center;
     padding: 10% 5%;
