@@ -75,7 +75,7 @@ body {
 }
 .cover-title {
     font-size: 1.4rem;
-    font-family: "Arial";
+    font-family: "Cinzel Decorative";
     color: rgb(229,229,203)
 }
 .cover-image {
@@ -83,7 +83,7 @@ body {
 }
 .cover {
     background-color: rgb(26,18,11);
-    text-align: left;
+    text-align: center;
     padding: 10% 5% 10% 5%;
 }
 
@@ -110,24 +110,24 @@ body {
 
 /* Latest Section */
 #latest {
-    padding: 10% 5% 10% 5%;
-    text-align: left;
+    padding: 10% 0% 10% 0%;
+    text-align: center;
     background-color: rgb(26,18,11);
     color: rgb(255,255,255);
 }
 .latest-description {
     font-family: "Cinzel Decorative";
-    text-align: left;
+    text-align: center;
     padding-bottom: 20px;
+    padding-left: 12px;
 }
 .latest-column {
     padding: 1% 2%;
     font-family: "Raleway";
 }
 .latest-content {
-
-    text-align: left;
-    padding: 1% 15% 15% 1%;
+    text-align: center;
+    padding: 10% 5% 10% 5%;
 }
 .latest-button {
     margin: 0 25% 0 25%;
