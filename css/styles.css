@@ -93,9 +93,10 @@ body {
     font-family: "Cinzel Decorative"; 
     font-weight: 100; 
     line-height: 1.4; 
-    font-size: 1.2rem; 
+    font-size: 1.4rem; 
     padding: 0.25%; 
     text-align: center;
+    margin-bottom: 5%
 }
 .intro-descrip {
     font-family: "Raleway"; 
@@ -165,10 +166,22 @@ body {
     margin-left: 30px;
 }
 
+
+/*************** CONTACT ****************/
+.contact-me {
+    background-color: rgb(16,16,16);
+    color: rgb(255,255,255);
+    text-align: center;
+}
+
+
+
 /*************** ENDING ***************/
 .ending {
-    background-color: #D7E9B9;
+    background-color: rgb(16,16,16);
     padding: 50px 0 20px;
+    color: rgb(255,255,255);
+    text-align: center;
 }
 .contact-message {
     width: 45%; 
