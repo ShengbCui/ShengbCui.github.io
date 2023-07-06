@@ -104,6 +104,94 @@ body {
     color: rgb(255,255,255);
 }
 
+/* Latest Section */
+#latest {
+    padding: 10% 5% 10% 5%;
+    text-align: left;
+    background-color: rgb(16,16,16);
+    color: rgb(255,255,255);
+}
+.latest-description {
+    font-family: "Cinzel Decorative";
+    text-align: left;
+    padding-bottom: 20px;
+}
+.latest-column {
+    padding: 1% 2%;
+    font-family: "Raleway";
+}
+.latest-content {
+
+    text-align: left;
+    padding: 1% 15% 15% 1%;
+}
+.latest-button {
+    margin: 0 25% 0 25%;
+}
+
+/*************** CONTACT ****************/
+.contact-me {
+    background-color: rgb(16,16,16);
+    color: rgb(255,255,255);
+    text-align: center;
+}
+.contact-title {
+    font-family: "Cinzel Decorative"; 
+    font-weight: 100; 
+    line-height: 1.4; 
+    font-size: 1.4rem; 
+    padding: 0.25%; 
+    text-align: center;
+    margin-bottom: 5% 
+}
+.contact-slogan {
+    font-family: "Arial"; 
+    font-size: 1.2rem;
+    color: rgb(255,255,255);
+}
+.contact-message {
+    font-family: "Raleway"; 
+    font-size: 1rem;
+    color: rgb(255,255,255);
+}
+
+
+
+/*************** ENDING ***************/
+.ending {
+    background-color: rgb(16,16,16);
+    padding: 50px 0 20px;
+    color: rgb(255,255,255);
+    text-align: center;
+}
+.contact-message {
+    width: 45%; 
+    margin: 40px auto 60px;
+}
+.btn {
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    font-family: 'Raleway', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    background: #63ae9b;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+.btn:hover {
+    background: #86c8bc;
+    text-decoration: none;
+}
+.copyright {
+    color: rgb(246,195,68);
+    font-size: 0.75rem;
+    padding: 20px 0; 
+}
+.footer-link {
+    font-size: 1rem;
+}
+
 /*************** RESEARCH ***************/
 .research {
     background-color: rgb(16,16,16);
@@ -164,49 +252,4 @@ body {
     width: 25%;
     float: right; 
     margin-left: 30px;
-}
-
-
-/*************** CONTACT ****************/
-.contact-me {
-    background-color: rgb(16,16,16);
-    color: rgb(255,255,255);
-    text-align: center;
-}
-
-
-
-/*************** ENDING ***************/
-.ending {
-    background-color: rgb(16,16,16);
-    padding: 50px 0 20px;
-    color: rgb(255,255,255);
-    text-align: center;
-}
-.contact-message {
-    width: 45%; 
-    margin: 40px auto 60px;
-}
-.btn {
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    border-radius: 10px;
-    font-family: 'Raleway', sans-serif;
-    color: #ffffff;
-    font-size: 20px;
-    background: #63ae9b;
-    padding: 10px 20px 10px 20px;
-    text-decoration: none;
-}
-.btn:hover {
-    background: #86c8bc;
-    text-decoration: none;
-}
-.copyright {
-    color: rgb(99,174,155);
-    font-size: 0.75rem;
-    padding: 20px 0; 
-}
-.footer-link {
-    font-size: 1rem;
 }
