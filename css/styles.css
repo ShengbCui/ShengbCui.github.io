@@ -3,29 +3,29 @@ h1 {
     font-weight: 400;
     font-size: 2rem; 
     line-height: 2;
-    color: rgb(255,255,255);
-    font-family: "Raleway"; 
+    color: rgb(0,0,0);
+    font-family: "Arial"; 
 }
 h2 {
     font-weight: 100; 
     font-size: 2rem; 
     line-height: 1;
-    color: rgb(255,255,255);
-    font-family: "Raleway"; 
+    color: rgb(0,0,0);
+    font-family: "Arial"; 
 }
 h3 {
     font-size: 0.5rem; 
-    font-family: "Raleway"; 
-    color: rgb(255,255,255);
+    font-family: "Arial"; 
+    color: rgb(0,0,0);
 }
 h4 {
     font-size: 0.2rem; 
-    font-family: "Raleway";
-    color: rgb(255,255,255);
+    font-family: "Arial";
+    color: rgb(0,0,0);
 }
 a {
-    color: rgb(255,255,255);
-    font-family: "Raleway"; 
+    color: rgb(0,0,0);
+    font-family: "Arial"; 
 }
 a:hover {
     color: rgb(99,174,155);
@@ -50,7 +50,7 @@ body {
 
 /*************** NAVIGATION BAR ****************/
 .container-fluid {
-    background-color: rgb(26,18,11);
+    background-color: rgb(255,255,255);
 }
 .navbar {
     padding: 0%;
@@ -60,7 +60,7 @@ body {
     font-family: "Arial"; 
 }
 .nav-link {
-    font-family: "Raleway"; 
+    font-family: "Arial"; 
     margin-top: 10px;
 }
 .nav-item {
@@ -71,30 +71,31 @@ body {
 /*************** COVER ******************/
 .cover-date {
     font-size: 1rem;
-    color: rgb(213,206,163); 
+    font-family: "Arial";
+    color: rgb(0, 0, 0); 
 }
 .cover-title {
     font-size: 1.4rem;
-    font-family: "Cinzel Decorative";
-    color: rgb(229,229,203)
+    font-family: "Arial";
+    color: rgb(0, 0, 0)
 }
 .cover-image {
     object-fit: cover;
 }
 .cover {
-    background-color: rgb(26,18,11);
+    background-color: rgb(255, 255, 255);
     text-align: center;
     padding: 10% 5% 10% 5%;
 }
 
 /**************** INTRO ***************/ 
 .intro {
-    background-color: rgb(26,18,11);
+    background-color: rgb(255, 255, 255);
     padding: 10% 5%;
     text-align: center;
 }
 .intro-name {
-    font-family: "Cinzel Decorative"; 
+    font-family: "Arial"; 
     font-weight: 100; 
     line-height: 1.4; 
     font-size: 2rem; 
@@ -103,27 +104,27 @@ body {
     margin-bottom: 5%
 }
 .intro-descrip {
-    font-family: "Raleway"; 
+    font-family: "Arial"; 
     font-size: 1.4rem;
-    color: rgb(255,255,255);
+    color: rgb(0, 0, 0);
 }
 
 /* Latest Section */
 #latest {
     padding: 10% 0% 10% 0%;
     text-align: center;
-    background-color: rgb(26,18,11);
-    color: rgb(255,255,255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 .latest-description {
-    font-family: "Cinzel Decorative";
+    font-family: "Arial";
     text-align: center;
     padding-bottom: 20px;
     padding-left: 12px;
 }
 .latest-column {
     padding: 1% 2%;
-    font-family: "Raleway";
+    font-family: "Arial";
 }
 .latest-content {
     text-align: center;
@@ -135,12 +136,12 @@ body {
 
 /*************** CONTACT ****************/
 .contact-me {
-    background-color: rgb(26,18,11);
-    color: rgb(255,255,255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-align: center;
 }
 .contact-title {
-    font-family: "Cinzel Decorative"; 
+    font-family: "Arial"; 
     font-weight: 100; 
     line-height: 1.4; 
     font-size: 2rem; 
@@ -151,19 +152,19 @@ body {
 .contact-slogan {
     font-family: "Arial"; 
     font-size: 1.2rem;
-    color: rgb(255,255,255);
+    color: rgb(0, 0, 0);
 }
 .contact-message {
-    font-family: "Raleway"; 
+    font-family: "Arial"; 
     font-size: 1rem;
-    color: rgb(255,255,255);
+    color: rgb(0, 0, 0);
 }
 
 /*************** ENDING ***************/
 .ending {
-    background-color: rgb(26,18,11);
+    background-color: rgb(255, 255, 255);
     padding: 50px 0 20px;
-    color: rgb(255,255,255);
+    color: rgb(0, 0, 0);
     text-align: center;
 }
 .contact-message {
@@ -174,7 +175,7 @@ body {
     -webkit-border-radius: 10;
     -moz-border-radius: 10;
     border-radius: 10px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Arial', sans-serif;
     color: #ffffff;
     font-size: 20px;
     background: #63ae9b;
@@ -214,7 +215,7 @@ body {
     font-family: "Arial";
 }
 .research-descrip {
-    font-family: "Raleway"; 
+    font-family: "Arial"; 
     font-size: 1rem; 
 }
 .research-row {
