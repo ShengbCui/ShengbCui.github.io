@@ -56,13 +56,13 @@ footer {
 .info-name {
     font-family: "Montserrat";  
     font-size: 1.5rem;
-    padding: 20% 0% 0% 0%;
+    padding: 10% 0% 0% 30%;
 }
 .info-descrip {
     font-family: "Montserrat";
     line-height: 1.2;
     font-size: 1rem;
-    padding: 0% 28% 0% 0%;
+    padding: 0% 30% 0% 0%;
 }
 .info-row {
     width:50%;
@@ -74,7 +74,7 @@ footer {
 .selfie {
     margin-right: 30px;
     float: left;
-    padding: 19% 0% 0% 20%;
+    padding: 8% 0% 0% 30%;
     width: 50;
     height: 50;
 }
