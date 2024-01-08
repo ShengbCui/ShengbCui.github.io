@@ -49,16 +49,17 @@ body {
 footer {
     text-align: center;
     font-size: 1.5rem;
+    font-family: "Montserrat";
 }
 
 /*************** INFO Page *******************/
 .info-name {
-    font-family: "Helvetica Neue";  
+    font-family: "Montserrat";  
     font-size: 1.5rem;
     padding: 20% 0% 0% 0%;
 }
 .info-descrip {
-    font-family: "Helvetica Neue";
+    font-family: "Montserrat";
     line-height: 1.2;
     font-size: 1rem;
     padding: 0% 28% 0% 0%;
