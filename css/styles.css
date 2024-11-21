@@ -156,6 +156,15 @@ img {
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
 }
+.card {
+    text-align: left;
+}
+.latest-button {
+    margin-left: 35%;
+}
+.card-footer {
+    text-align: right;
+}
 
 /** MUSIC **/ 
 .music {
