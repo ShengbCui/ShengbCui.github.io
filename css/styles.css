@@ -1,88 +1,49 @@
-/*************** GENERAL ******************/
+/** GENERAL **/
+section {
+    font-family: "Montserrat", sans-serif; 
+}
 h1 {
-    font-weight: 400;
-    font-size: 2rem; 
-    line-height: 2;
-    color: rgb(0,0,0);
-    font-family: "Arial"; 
+    display: block; 
+    font-size: 2.5rem; 
+    margin-block-start: 0.67em; 
+    margin-block-end: 0.67em; 
+    margin-inline-start: 0px; 
+    margin-inline-end: 0px; 
+    font-weight: bold; 
+    unicode-bidi: isolate;
 }
+
 h2 {
-    font-weight: 100; 
     font-size: 2rem; 
-    line-height: 1;
-    color: rgb(0,0,0);
-    font-family: "Arial"; 
-}
-h3 {
-    font-size: 0.5rem; 
-    font-family: "Arial"; 
-    color: rgb(0,0,0);
-}
-h4 {
-    font-size: 0.2rem; 
-    font-family: "Arial";
-    color: rgb(0,0,0);
-}
-a {
-    color: rgb(0,0,0);
-    font-family: "Arial"; 
-}
-a:hover {
-    color: rgb(99,174,155);
-}
-hr {
-    border-style: none;
-    border-top-style: dotted;
-    border-color: #FFD4B2;
-    border-width: 5px;
-    width: 4%;
-    margin: 50px auto;
-    background-color: rgb(0,0,0);
+    color: #414141; 
+    margin-bottom: 0.5rem; 
+    font-weight: 500; 
+    line-height: 1.2;
+    margin-block-start: 0.83em; 
+    margin-block-end: 0.83em; 
+    margin-inline-start: 0px; 
+    margin-inline-end: 0px; 
+    font-weight: bold; 
+    unicode-bidi: isolate;
 }
 body {
-    color: #ffffff;
-    background-color: rgb(0, 0, 0);
-    margin: 0;
-    text-align: center;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-footer {
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: "Montserrat";
+    color: #797979;  
 }
 
-/*************** INFO Page *******************/
-.info-name {
-    font-family: "Montserrat";  
-    font-size: 1.5rem;
-    padding: 10% 0% 0% 30%;
+ul {
+    list-style-type: disc;
 }
-.info-descrip {
-    font-family: "Montserrat";
-    line-height: 1.2;
-    font-size: 1rem;
-    padding: 0% 30% 0% 0%;
+li {
+    display: list-item; 
+    text-align: -webkit-match-parent; 
+    unicode-bidi: isolate; 
 }
-.info-row {
-    width:50%;
-    margin: 100px auto 0px auto; 
-    text-align: left;
-    line-height: 2;
-    padding-bottom: 50%;
-}
-.selfie {
-    margin-right: 30px;
-    float: left;
-    padding: 8% 0% 0% 30%;
-    width: 50;
-    height: 50;
-}
-.link-item {
-    padding: 1% 2% 0% 0%;
+img {
+    vertical-align: middle; 
+    border-style: none;
 }
 
-/*************** NAVIGATION BAR ****************/
+/** NAVIGATION BAR **/
 .container-fluid {
     background-color: rgb(255,255,255);
 }
@@ -94,7 +55,7 @@ footer {
     font-family: "Montserrat"; 
 }
 .nav-link {
-    font-family: "Arial"; 
+    font-family: "Montserrat", sans-serif; 
     margin-top: 10px;
 }
 .nav-item {
@@ -102,199 +63,136 @@ footer {
     padding: 0 15px; 
 }
 
-/*************** COVER ******************/
-.cover-date {
-    font-size: 1rem;
-    font-family: "Arial";
-    color: rgb(0, 0, 0); 
+/** HERO **/ 
+.hero {
+    margin: 5% 25% 0% 15%;
+    text-align: left;
 }
-.cover-title {
-    font-size: 1.4rem;
-    font-family: "Arial";
-    color: rgb(0, 0, 0)
+.hero-text h1 {
+    font-size: 60px; 
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 15px; 
+    font-family: "Montserrat", sans-serif;
 }
-.cover-image {
-    object-fit: cover;
+.hero-text h2 {
+    display: inline-block; 
+    margin: 0; 
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
 }
-.cover {
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 10% 5% 10% 5%;
+.sns-icons ul li {
+    display: inline-block; 
+    margin-top: 30px; 
+    margin-right: 20px; 
+    margin-bottom: 50px;
 }
-
-/**************** INTRO ***************/ 
-.intro {
-    background-color: rgb(255, 255, 255);
-    padding: 10% 5%;
-    text-align: center;
-}
-.intro-name {
-    font-family: "Arial"; 
-    font-weight: 100; 
-    line-height: 1.4; 
-    font-size: 2rem; 
-    padding: 0.25%; 
-    text-align: center;
-    margin-bottom: 5%
-}
-.intro-descrip {
-    font-family: "Arial"; 
-    font-size: 1.4rem;
-    color: rgb(0, 0, 0);
+.list-unstyled {
+    padding-left: 0; 
+    list-style: none; 
 }
 
-/* Latest Section */
-#latest {
-    padding: 10% 0% 10% 0%;
+/** ABOUT **/ 
+.about {
+    margin: 3% 10% 5% 10%;
     text-align: center;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
 }
-.latest-description {
-    font-family: "Arial";
-    text-align: center;
-    padding-bottom: 20px;
-    padding-left: 12px;
-}
-.latest-column {
-    padding: 1% 2%;
-    font-family: "Arial";
-}
-.latest-content {
-    text-align: center;
-    padding: 10% 5% 10% 5%;
-}
-.latest-button {
-    margin: 0 25% 0 25%;
+.about h2 {
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
 }
 
-/*************** CONTACT ****************/
-.contact-me {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    text-align: center;
-}
-.contact-title {
-    font-family: "Arial"; 
-    font-weight: 100; 
-    line-height: 1.4; 
-    font-size: 2rem; 
-    padding: 0.25%; 
-    text-align: center;
-    margin-bottom: 5% 
-}
-.contact-slogan {
-    font-family: "Arial"; 
-    font-size: 1.2rem;
-    color: rgb(0, 0, 0);
-}
-.contact-message {
-    font-family: "Arial"; 
-    font-size: 1rem;
-    color: rgb(0, 0, 0);
-}
-
-/*************** ENDING ***************/
-.ending {
-    background-color: rgb(255, 255, 255);
-    padding: 50px 0 20px;
-    color: rgb(0, 0, 0);
-    text-align: center;
-}
-.contact-message {
-    width: 45%; 
-    margin: 40px auto 60px;
-}
-.btn {
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    border-radius: 10px;
-    font-family: 'Arial', sans-serif;
-    color: #ffffff;
-    font-size: 20px;
-    background: #63ae9b;
-    padding: 10px 20px 10px 20px;
-    text-decoration: none;
-}
-.btn:hover {
-    background: #86c8bc;
-    text-decoration: none;
-}
-.copyright {
-    color: rgb(0, 0, 0);
-    font-size: 0.75rem;
-    padding: 20px 0; 
-}
-.footer-link {
-    font-size: 1rem;
-}
-
-
-/*************** RESUME ****************/ 
-.resume {
-    background-color: rgb(26,18,11);
-    color: rgb(255,255,255);
-    text-align: center;
-}
-
-/*************** RESEARCH ***************/
+/** RESEARCH **/ 
 .research {
-    background-color: rgb(26,18,11);
-    color: rgb(255,255,255);
+    margin: 3% 10% 5% 10%;
     text-align: center;
-    padding: 10% 5%; 
 }
-.research-title {
-    font-size: 1.4rem;
-    font-family: "Arial";
-}
-.research-descrip {
-    font-family: "Arial"; 
-    font-size: 1rem; 
-}
-.research-row {
-    width:50%;
-    margin: 100px auto 0px auto; 
-    text-align: left;
-    line-height: 2;
-}
-.happy-img {
-    width: 20%;
-    float: left;
-    margin-right: 30px;
-}
-.vision-img {
-    width: 20%;
-    float: right;
-    margin-left: 30px;
+.research h2 {
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
 }
 
-/*************** SKILLS ***************/
-.skills {
-    background-color: rgb(26,18,11);
-    color: rgb(255,255,255);
+/** PUBLICATIONS **/ 
+.pubs {
+    margin: 3% 10% 5% 10%;
     text-align: center;
-    padding: 10% 5%;
 }
-.skill-web {
-    width: 50%;
-    margin: 100px auto 100px auto;
+.pubs h2 {
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+.pubs h3 {
+    height: 25px; 
+    color: black; 
+    font-size: 20px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+.pubs p {
     text-align: left;
-    line-height: 2;
 }
-.skill-data {
-    width: 50%;
-    margin: 0px auto 100px auto; 
-    text-align: right; 
-    line-height: 2;
+
+/** LATEST **/ 
+.latest {
+    margin: 3% 10% 5% 10%;
+    text-align: center;
 }
-.web-dev {
-    width: 25%; 
-    float: left; 
-    margin-right: 30px;
+.latest h2 {
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
 }
-.data-img {
-    width: 25%;
-    float: right; 
-    margin-left: 30px;
+
+/** MUSIC **/ 
+.music {
+    margin: 3% 10% 5% 10%;
+    text-align: center;
+}
+.music h2 {
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+
+/** CONTACT **/ 
+.contact {
+    text-align: center;
+}
+.contact h2 { 
+    margin: 15px; 
+    height: 25px; 
+    color: black; 
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+.contact h3 {
+    display: inline-block; 
+    margin: 10px; 
+    height: 20px; 
+    color: black; 
+    font-size: 18px; 
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif;
+}
+.ending {
+    text-align: center;
+    font-size: 12px;
+    margin: 50px 50px 0px 50px
 }
