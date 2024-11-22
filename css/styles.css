@@ -69,7 +69,7 @@ img {
     font-size: 60px; 
     font-weight: 700;
     letter-spacing: 1px;
-    /** margin-bottom: 15px; **/
+    margin-bottom: 15px;
     font-family: "Montserrat", sans-serif;
 }
 .hero-text h2 {
@@ -94,7 +94,7 @@ img {
 
 /** ABOUT **/ 
 .about {
-    margin: 3% 10% 5% 10%;
+    margin: 3% 20% 5% 20%;
     text-align: center;
 }
 .about h2 {
@@ -107,7 +107,7 @@ img {
 
 /** RESEARCH **/ 
 .research {
-    margin: 3% 10% 5% 10%;
+    margin: 3% 20% 5% 20%;
     text-align: center;
 }
 .research h2 {
@@ -120,7 +120,7 @@ img {
 
 /** PUBLICATIONS **/ 
 .pubs {
-    margin: 3% 10% 5% 10%;
+    margin: 3% 20% 5% 20%;
     text-align: center;
 }
 .pubs h2 {
@@ -133,18 +133,19 @@ img {
 .pubs h3 {
     height: 25px; 
     color: black; 
-    font-size: 20px; 
+    font-size: 18px; 
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
+    text-align: center;
 }
 .pubs p {
-    text-align: left;
+    text-align: center;
+    margin-top: 2%; 
 }
-
 /** LATEST **/ 
 .latest {
-    margin: 3% 10% 5% 10%;
     text-align: center;
+    margin: 3% 20% 5% 20%; 
 }
 .latest h2 {
     height: 25px; 
@@ -154,10 +155,10 @@ img {
     font-family: "Montserrat", sans-serif;
 }
 .card {
-    text-align: left;
+    text-align: center;
 }
-.latest-button {
-    margin-left: 35%;
+.card-header {
+    text-align: left;
 }
 .card-footer {
     text-align: right;
@@ -165,7 +166,7 @@ img {
 
 /** MUSIC **/ 
 .music {
-    margin: 3% 10% 5% 10%;
+    margin: 3% 20% 5% 20%;
     text-align: center;
 }
 .music h2 {
@@ -179,6 +180,7 @@ img {
 /** CONTACT **/ 
 .contact {
     text-align: center;
+    margin: 3% 20% 5% 20%; 
 }
 .contact h2 { 
     margin: 15px; 
