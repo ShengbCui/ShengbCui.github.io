@@ -94,7 +94,7 @@ img {
 
 /** ABOUT **/ 
 .about {
-    margin: 3% 20% 5% 20%;
+    margin: 3% 10% 5% 10%;
     text-align: center;
 }
 .about h2 {
@@ -107,7 +107,7 @@ img {
 
 /** RESEARCH **/ 
 .research {
-    margin: 3% 20% 5% 20%;
+    margin: 3% 10% 5% 10%;
     text-align: center;
 }
 .research h2 {
@@ -120,7 +120,7 @@ img {
 
 /** PUBLICATIONS **/ 
 .pubs {
-    margin: 3% 20% 5% 20%;
+    margin: 3% 10% 5% 10%;
     text-align: center;
 }
 .pubs h2 {
@@ -128,7 +128,7 @@ img {
     color: black; 
     font-size: 25px; 
     font-weight: 600;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif; 
 }
 .pubs h3 {
     height: 25px; 
@@ -137,15 +137,16 @@ img {
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
     text-align: center;
+    margin-bottom: 2%;
 }
 .pubs p {
     text-align: center;
-    margin-top: 2%; 
+    margin-bottom: 3%; 
 }
 /** LATEST **/ 
 .latest {
     text-align: center;
-    margin: 3% 20% 5% 20%; 
+    margin: 3% 10% 5% 10%; 
 }
 .latest h2 {
     height: 25px; 
@@ -166,7 +167,7 @@ img {
 
 /** MUSIC **/ 
 .music {
-    margin: 3% 20% 5% 20%;
+    margin: 3% 10% 5% 10%;
     text-align: center;
 }
 .music h2 {
@@ -180,7 +181,7 @@ img {
 /** CONTACT **/ 
 .contact {
     text-align: center;
-    margin: 3% 20% 5% 20%; 
+    margin: 3% 10% 5% 10%; 
 }
 .contact h2 { 
     margin: 15px; 
