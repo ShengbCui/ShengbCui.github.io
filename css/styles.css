@@ -164,13 +164,13 @@ img {
 .card h3 {
     height: 25px; 
     color: black; 
-    font-size: 18px; 
-    font-weight: 600;
+    font-size: 16px; 
+    font-weight: bold;
     font-family: "Montserrat", sans-serif;
 }
 .card p { 
     color: black; 
-    font-size: 16px; 
+    font-size: 15px; 
     font-weight: regular;
     font-family: "Montserrat", sans-serif;
 }
