@@ -1,675 +1,741 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <style>
-        body {transition: opacity ease-in 0.2s; }
-        body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
-    </style>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Choi Seongbin (Cui Shengbin) - PhD student in cognitive neuroscience researching interoceptive processing and moral decision-making at Osaka University.">
-    <meta name="keywords" content="cognitive neuroscience, interoception, moral decision-making, Osaka University, brain physiology">
-    <meta name="author" content="Choi Seongbin">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Choi Seongbin - Cognitive Neuroscience Researcher">
-    <meta property="og:description" content="PhD student studying interoceptive processing and moral decision-making">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com">
-    <meta property="og:image" content="images/og-image.jpg">
-    
-    <title>Choi Seongbin | Cognitive Neuroscience Researcher</title>
-
-    <!-- Favicon --> 
-    <link href="favicon.ico" rel="icon"> 
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    
-    <!-- Fonts -->
+    <title>Cognitive Neuroscience Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/430daef422.js" crossorigin="anonymous"></script>
-    
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Choi Seongbin",
-        "givenName": "Seongbin",
-        "familyName": "Choi",
-        "alternateName": "Cui Shengbin",
-        "jobTitle": "PhD Student in Cognitive Neuroscience",
-        "affiliation": {
-            "@type": "Organization",
-            "name": "Osaka University",
-            "url": "https://www.osaka-u.ac.jp/en"
-        },
-        "url": "https://yourdomain.com",
-        "email": "shengbin.cui.1230@gmail.com",
-        "description": "Cognitive neuroscience researcher focusing on interoceptive processing and moral decision-making",
-        "sameAs": [
-            "https://x.com/1230Shengbin",
-            "https://github.com/ShengbCui"
-        ]
-    }
-    </script>
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-grad-1: #0a0a0a;
+            --bg-grad-2: #1a1a1a;
+            --bg-grad-3: #0a0a0a;
+            --bg-grad-4: #232323;
+            --text-main: #e5e5e5;
+            --text-neutral: #a3a3a3;
+            --text-subtle: #737373;
+            --card-bg: rgba(16, 16, 16, 0.8);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --spotlight-bg: rgba(255, 255, 255, 0.08);
+            --link-color: #e5e5e5;
+            --timeline-line: #3f3f46;
+            --timeline-marker-bg: #e5e5e5;
+            --timeline-marker-border: #1a1a1a;
+            --publication-border: rgba(255, 255, 255, 0.2);
+            --publication-hover-border: #e5e5e5;
+            --publication-hover-bg: rgba(255, 255, 255, 0.1);
+            --method-bg: rgba(30, 30, 30, 0.5);
+            --method-hover-bg: rgba(40, 40, 40, 0.7);
+        }
 
-<body data-spy="scroll" data-target=".navbar" data-offset="51"> 
-    <!-- Accessibility Skip Link -->
-    <a href="#main-content" class="skip-link visually-hidden-focusable">Skip to main content</a>
-    
-    <!-- Header and Navigation -->
-    <header class="header" id="navi">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/shengbin.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-                    <span class="ms-2 d-none d-sm-inline">Choi Seongbin</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#research">Research</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#pubs">Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#music">Music</a>
-                        </li>
-                        <li class="nav-item">
-                            <a target="_blank" rel="noopener noreferrer" class="nav-link" href="https://choi.quarto.pub/blogs/">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <div class="d-flex">
-                        <button class="btn btn-theme-outline ms-2 d-none d-lg-block" id="theme-toggle">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </div>
+        html.light {
+            --bg-grad-1: #f5f5f5;
+            --bg-grad-2: #e7e7e7;
+            --bg-grad-3: #f5f5f5;
+            --bg-grad-4: #fafafa;
+            --text-main: #171717;
+            --text-neutral: #525252;
+            --text-subtle: #737373;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --spotlight-bg: rgba(0, 0, 0, 0.05);
+            --link-color: #171717;
+            --timeline-line: #d4d4d4;
+            --timeline-marker-bg: #262626;
+            --timeline-marker-border: #f5f5f5;
+            --publication-border: rgba(0, 0, 0, 0.2);
+            --publication-hover-border: #262626;
+            --publication-hover-bg: rgba(0, 0, 0, 0.05);
+            --method-bg: rgba(245, 245, 245, 0.8);
+            --method-hover-bg: rgba(229, 229, 229, 0.9);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background: linear-gradient(-45deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3), var(--bg-grad-4));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .section-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* Required for the spotlight effect */
+            overflow: hidden; /* Hide spotlight overflow */
+        }
+        /* New: Spotlight effect on section backgrounds */
+        .section-card::before {
+            content: "";
+            position: absolute;
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at center, var(--spotlight-bg) 0%, rgba(255, 255, 255, 0) 60%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .section-card:hover::before {
+            opacity: 1;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        html.light .section-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            color: var(--link-color);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--link-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        /* New: Shimmer effect for intro images */
+        .selfie-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            display: inline-block;
+        }
+        .selfie-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            transform: translateX(-100%);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: transform 0.8s ease;
+        }
+        .selfie-container:hover::after {
+            transform: translateX(100%);
+        }
+        .easter-egg-neuron:hover {
+            cursor: pointer;
+            filter: drop-shadow(0 0 5px #fff);
+        }
+        .easter-egg-neuron.fired {
+            animation: fire-pulse 0.5s ease-out;
+        }
+        @keyframes fire-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .publication-item {
+            border-left: 2px solid var(--publication-border);
+            transition: border-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .publication-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--publication-hover-bg), transparent);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+        .publication-item:hover {
+            border-left-color: var(--publication-hover-border);
+        }
+        .publication-item:hover::after {
+            width: 100%;
+        }
+        .game-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .research-topic-card {
+            background-color: var(--method-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            min-height: 180px;
+            perspective: 1000px;
+            border: 1px solid var(--card-border);
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .research-topic-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            font-size: 0.9rem;
+            color: var(--text-neutral);
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* New: Education timeline animation */
+        @keyframes pulse-marker {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            50% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        }
+        .timeline-item {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .timeline-item.is-visible {
+            opacity: 1;
+        }
+        .timeline-item.is-visible .timeline-marker {
+            animation: pulse-marker 1.5s ease-out 0.3s; /* Delay pulse */
+        }
+        .timeline-item .timeline-content {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: 0.5s;
+        }
+        .timeline-item.is-visible .timeline-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-content-right {
+            transform: translateX(40px);
+        }
+        .timeline-content-left {
+            transform: translateX(-40px);
+        }
+        .timeline-marker {
+            background-color: var(--timeline-marker-bg);
+            border-color: var(--timeline-marker-border);
+        }
+        /* New: Research Methods item hover */
+        .method-item {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            background-color: var(--method-bg);
+        }
+        .method-item:hover {
+            transform: scale(1.05);
+            background-color: var(--method-hover-bg);
+        }
+        /* New: Blog/Music link hover */
+        .read-more-link .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .read-more-link:hover .arrow {
+            transform: translateX(5px);
+        }
+        /* New: Contact icon hover */
+        .contact-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+            color: var(--text-subtle);
+        }
+        .contact-icon:hover {
+            transform: scale(1.2);
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Konami Code Game Overlay -->
+    <div id="game-container" class="game-overlay hidden">
+        <canvas id="pong-game" width="600" height="400"></canvas>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wider">SHENGBIN CUI</div>
+            <div class="flex items-center">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#research-topics" class="nav-link">Research</a>
+                    <a href="#publications" class="nav-link">Publications</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#music" class="nav-link">Music</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="ml-6 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-200">
+                    <svg id="theme-toggle-sun" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-toggle-moon" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
             </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2">About</a>
+            <a href="#research-topics" class="block py-2">Research</a>
+            <a href="#publications" class="block py-2">Publications</a>
+            <a href="#blog" class="block py-2">Blog</a>
+            <a href="#music" class="block py-2">Music</a>
+            <a href="#contact" class="block py-2">Contact</a>
+        </div>
     </header>
 
-    <div id="particles-js" class="particles-container"></div>
-    
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero-section" id="intro">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-5 order-lg-2">
-                        <div class="hero-image">
-                            <img src="images/profile.jpg" alt="Choi Seongbin" width="200" height="200" class="img-fluid rounded-lg shadow hero-profile-photo">
-                        </div>
-                    </div>
-                    <div class="col-lg-7 order-lg-1">
-                        <div class="hero-content">
-                            <div class="hero-intro">Cognitive Neuroscience Researcher</div>
-                            <h1 class="hero-title">
-                                <span class="text-animate">C</span>
-                                <span class="text-animate">h</span>
-                                <span class="text-animate">o</span>
-                                <span class="text-animate">i</span>
-                                <span class="text-animate">&nbsp;</span>
-                                <span class="text-animate">S</span>
-                                <span class="text-animate">e</span>
-                                <span class="text-animate">o</span>
-                                <span class="text-animate">n</span>
-                                <span class="text-animate">g</span>
-                                <span class="text-animate">b</span>
-                                <span class="text-animate">i</span>
-                                <span class="text-animate">n</span>
-                            </h1>
-                            <p class="hero-subtitle">PhD Student at Osaka University exploring the neural mechanisms of interoception and social cognition | visual perception using computational modeling.</p>
-                            <div class="hero-buttons mt-4">
-                                <a href="#research" class="btn btn-theme me-3">My Research</a>
-                                <a href="#contact" class="btn btn-theme-outline">Contact Me</a>
-                            </div>
-                            <div class="social-icons mt-4">
-                                <a target="_blank" rel="noopener noreferrer" href="https://x.com/1230Shengbin" aria-label="Twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a target="_blank" rel="noopener noreferrer" href="https://github.com/ShengbCui" aria-label="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1zdXtIRFI9wVqOTvCAOtS3M-uMXIch-Y0KIRx6pGNxbw/edit?tab=t.0" aria-label="Resume">
-                                    <i class="far fa-file-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="hero" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
+        <div id="hero-canvas"></div>
+        <div class="hero-content">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter">Exploring the Symphony of the Mind</h1>
+            <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-neutral-300">A Cognitive Neuroscience Researcher at the intersection of interoception, social decision-making, and music cognition.</p>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section class="section-padding" id="about">
-            <div class="container">
-                <div class="section-header">
-                    <h2>About Me</h2>
-                    <div class="section-divider"></div>
-                </div>
-                
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="about-content text-center">
-                            <p class="lead">My name is Choi Seongbin (but Cui Shengbin officially).</p>
-                            <p>I am a Ph.D. student at
-                                <a target="_blank" rel="noopener noreferrer" href="https://www.osaka-u.ac.jp/en">The University of Osaka</a> 
-                                studying cognitive neuroscience with the
-                                <a target="_blank" rel="noopener noreferrer" href="https://kitazawa-lab.jp/en/index.html">Brain Physiology Lab</a> 
-                                and 
-                                <a target="_blank" rel="noopener noreferrer" href="https://cinet.jp/english/">Center for Information and Neural Networks (CiNet)</a>.
-                            </p>
-                            
-                            <div class="timeline mt-5">
-                                <div class="timeline-item">
-                                    <div class="timeline-point"></div>
-                                    <div class="timeline-content">
-                                        <h4>PhD in Cognitive Neuroscience</h4>
-                                        <p>The University of Osaka, 2022-Present</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-point"></div>
-                                    <div class="timeline-content">
-                                        <h4>Master's in Psychology</h4>
-                                        <p>Hiroshima University, 2019-2021</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-point"></div>
-                                    <div class="timeline-content">
-                                        <h4>Bachelor's in English</h4>
-                                        <p>Zhengzhou University, 2013-2017</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Research Section -->
-        <section class="section-padding bg-light" id="research">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Research Focus</h2>
-                    <div class="section-divider"></div>
-                    <p class="section-subtitle">Exploring the neural mechanisms of interoception and social cognition | visual perception </p>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="research-card">
-                            <div class="research-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3>Interoceptive Processing</h3>
-                            <p>Investigating how internal bodily signals influence our cognitive processes and decision-making, particularly through EEG and ECG methodologies.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="research-card">
-                            <div class="research-icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <h3>Moral Decision-Making</h3>
-                            <p>Examining the neural underpinnings of utilitarian and deontological decisions in moral dilemmas and their relationship to bodily signals.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="research-card">
-                            <div class="research-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3>Social Cognition</h3>
-                            <p>Studying how interoceptive awareness influences our social interactions and understanding of others' mental states.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="research-card">
-                            <div class="research-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3>Computational Modeling</h3>
-                            <p>Applying machine learning techniques to model and understand the mechanisms of human visual perception.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="research-methods mt-5">
-                    <h3 class="text-center mb-4">Research Methods & Skills</h3>
-                    <div class="row g-3 justify-content-center">
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fas fa-wave-square"></i>
-                                <span>EEG</span>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fas fa-heartbeat"></i>
-                                <span>ECG</span>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fas fa-brain"></i>
-                                <span>fMRI</span>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fas fa-chart-bar"></i>
-                                <span>Data Analysis</span>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fab fa-python"></i>
-                                <span>Python</span>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fas fa-code-branch"></i>
-                                <span>MATLAB</span>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="method-badge">
-                                <i class="fas fa-microscope"></i>
-                                <span>Experimental Design</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Publications Section -->
-        <section class="section-padding" id="pubs">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Publications</h2>
-                    <div class="section-divider"></div>
-                    <p class="section-subtitle">My academic research contributions</p>
-                </div>
-                
-                <div class="publications-tabs">
-                    <ul class="nav nav-tabs" id="publicationsTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="journals-tab" data-bs-toggle="tab" data-bs-target="#journals" type="button" role="tab" aria-controls="journals" aria-selected="true">Journal Articles</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="conferences-tab" data-bs-toggle="tab" data-bs-target="#conferences" type="button" role="tab" aria-controls="conferences" aria-selected="false">Conference Presentations</button>
-                        </li>
-                    </ul>
-                    
-                    <div class="tab-content mt-4" id="publicationsTabContent">
-                        <div class="tab-pane fade show active" id="journals" role="tabpanel" aria-labelledby="journals-tab">
-                            <div class="publications-list">
-                                <div class="publication-item">
-                                    <div class="pub-year">2024</div>
-                                    <h4 class="pub-title">Interoceptive Brain Processing Influences Moral Decision-Making</h4>
-                                    <p class="pub-authors">Cui, S. & Nakano, T.</p>
-                                    <p class="pub-journal"><em>Human Brain Mapping</em>, 45, e70108</p>
-                                    <div class="pub-links">
-                                        <a href="https://onlinelibrary.wiley.com/doi/10.1002/hbm.70108" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-theme-outline">
-                                            <i class="fas fa-external-link-alt me-1"></i> View Paper
-                                        </a>
-                                        <button class="btn btn-sm btn-secondary ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#abstract1">
-                                            <i class="fas fa-align-left me-1"></i> Abstract
-                                        </button>
-                                    </div>
-                                    <div class="collapse mt-3" id="abstract1">
-                                        <div class="card card-body bg-light">
-                                            <small>Not harming others is widely regarded as a fundamental tenet of human morality. Harm aversion based on the consequences of an action is called utilitarianism while focusing on the action itself is associated with deontology. This study investigated how interoceptive processing affects the neural processing of utilitarian and deontological moral decision-making. The study utilized the heartbeat-evoked potential (HEP), an averaged electrophysiological component from electroencephalogram (EEG) to gauge cardiac interoceptive processing. Twenty-seven participants were asked to make utilitarian and deontological decisions for personal and impersonal moral dilemmas (18 for each) with direct and indirect harm actions, respectively, while their EEG and electrocardiogram were being recorded. We found no difference in HEPs between personal and impersonal moral dilemmas. In contrast, differential HEPs were observed between utilitarian and deontological moral decision-making, regardless of type of dilemmas. Significant differences were observed over centro-posterior electrodes between 110 and 172 milliseconds after R-peaks during the Scenario Phase, and over right fronto-temporal electrodes between 314 and 404 milliseconds after R-peaks in the Decision Phase. We confirmed that these differences in HEP amplitude between deontological and utilitarian decisions did not stem from cardiac artifacts. These findings reveal that the brain utilizes interoceptive information to make subsequent moral decisions.</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="publication-item">
-                                    <div class="pub-year">2020</div>
-                                    <h4 class="pub-title">Language-based modulation of the stream/bounce judgment</h4>
-                                    <p class="pub-authors">Cui, S. & Ariga, A.</p>
-                                    <p class="pub-journal"><em>i-Perception</em>, 11, 1-11</p>
-                                    <div class="pub-links">
-                                        <a href="https://doi.org/10.1177/2041669520935925" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-theme-outline">
-                                            <i class="fas fa-external-link-alt me-1"></i> View Paper
-                                        </a>
-                                        <button class="btn btn-sm btn-secondary ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#abstract2">
-                                            <i class="fas fa-align-left me-1"></i> Abstract
-                                        </button>
-                                    </div>
-                                    <div class="collapse mt-3" id="abstract2">
-                                        <div class="card card-body bg-light">
-                                            <small>When two identical objects on a screen move toward each other, coincide at the center of the screen, and then continue to move along their original trajectories to the opposite starting points, observers perceive these visual stimuli as showing one of the two possible scenarios: streaming through or bouncing off each other (stream/bounce perception). Previous research has shown that when a high-arousal face is presented along with the two moving objects, the bouncing percept was predominant, as compared with when a middle- or low-arousal face is presented. In this study, however, such a modulatory effect of the emotional face was eliminated when participants did not judge stream or bounce and the terms “bouncing/streaming” were not used in the experiments. These results suggest that the modulatory effect of emotional stimuli on the stream/bounce judgment cannot be explained solely by the emotional processing per se but, rather, can be modulated by language-based processing.</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-pane fade" id="conferences" role="tabpanel" aria-labelledby="conferences-tab">
-                            <div class="publications-list">
-                                <div class="publication-item">
-                                    <div class="pub-year">2025</div>
-                                    <h4 class="pub-title">Heartbeat-Related Brain Responses Guide Moral Decisions</h4>
-                                    <p class="pub-authors">Cui, S. & Nakano, T.</p>
-                                    <p class="pub-venue">The 27th Annual Meeting of Japan Human Brain Mapping Society. Tokyo, Japan.</p>
-                                </div>
-                                
-                                <div class="publication-item">
-                                    <div class="pub-year">2024</div>
-                                    <h4 class="pub-title">Effects of Interoceptive Brain Processing on Moral Decision-Making</h4>
-                                    <p class="pub-authors">Cui, S. & Nakano, T.</p>
-                                    <p class="pub-venue">Society for Social Neuroscience Annual Meeting. Tsukuba, Japan.</p>
-                                </div>
-                                
-                                <div class="publication-item">
-                                    <div class="pub-year">2023</div>
-                                    <h4 class="pub-title">Enhanced interoceptive processing by self-related positive emotion</h4>
-                                    <p class="pub-authors">Cui, S. & Nakano, T.</p>
-                                    <p class="pub-venue">15th Annual Meeting of Social & Affective Neuroscience Society. Santa Barbara, USA.</p>
-                                </div>
-                                
-                                <div class="publication-item">
-                                    <div class="pub-year">2022</div>
-                                    <h4 class="pub-title">Comparison of heartbeat-evoked potentials between self- and other-emotional processing</h4>
-                                    <p class="pub-authors">Cui, S. & Nakano, T.</p>
-                                    <p class="pub-venue">International Symposium on Chronogenesis. Okinawa, Japan.</p>
-                                </div>
-                                
-                                <div class="publication-item">
-                                    <div class="pub-year">2021</div>
-                                    <h4 class="pub-title">Language-based response bias in the stream/bounce paradigm</h4>
-                                    <p class="pub-authors">Cui, S. & Ariga, A.</p>
-                                    <p class="pub-venue">The 32nd International Congress of Psychology. Prague, Czech Republic.</p>
-                                </div>
-                                
-                                <div class="publication-item">
-                                    <div class="pub-year">2019</div>
-                                    <h4 class="pub-title">The effect of emotional stimuli on stream/bounce perception: Investigation of response bias on word labels</h4>
-                                    <p class="pub-authors">Cui, S. & Ariga, A.</p>
-                                    <p class="pub-venue">The 83rd Annual Convention of the Japanese Psychological Association. Osaka, Japan.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Music Section -->
-        <section class="section-padding bg-light" id="music">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Music</h2>
-                    <div class="section-divider"></div>
-                </div>
-                
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="music-content text-center">
-                            <div class="music-icon mb-4">
-                                <i class="fas fa-music"></i>
-                            </div>
-                            <p>At the same time, I am also a clarinet player serving in an 
-                                <a target="_blank" rel="noopener noreferrer" href="https://orchestraofoufs.wixsite.com/oufs">Orchestra</a>
-                                at Osaka University.
-                            </p>
-                            <div class="music-gallery mt-5">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="music-card">
-                                            <img src="images/orchestraband.jpg" alt="Orchestra performance" class="img-fluid rounded-lg">
-                                            <div class="music-card-overlay">
-                                                <h4>Spring Concert 2024</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="music-card">
-                                            <img src="images/clarinet.jpg" alt="Clarinet performance" class="img-fluid rounded-lg">
-                                            <div class="music-card-overlay">
-                                                <h4>Chamber Music</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
-        <section class="section-padding" id="blog">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Latest Blog Posts</h2>
-                    <div class="section-divider"></div>
-                    <p class="section-subtitle">
-                        <a target="_blank" rel="noopener noreferrer" href="https://choi.quarto.pub/blogs/">Visit my blog</a> for more articles on neuroscience, research, and academic life
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16 space-y-24">
+        <!-- Introduction Section -->
+        <section id="about" class="section-card p-8 md:p-12 animate-on-scroll">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="md:col-span-2">
+                    <h2 class="text-3xl font-bold mb-6">Introduction</h2>
+                    <p class="mb-4 text-neutral-300">
+                        Welcome to my digital space. I am a cognitive neuroscience researcher fascinated by how our brains process complex auditory information, particularly music. My work aims to unravel the neural mechanisms underlying music perception and the profound emotional impact of music. I believe that by understanding how we perceive a symphony, we can better understand the architecture of the human mind itself.
+                    </p>
+                    <p class="text-neutral-300">
+                        Beyond the lab, I'm an avid musician and music enthusiast, which constantly fuels my scientific curiosity. This website is a fusion of these two worlds—a place to share my research, thoughts on science, and musical explorations.
                     </p>
                 </div>
-                
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="blog-card shadow-sm">
-                            <div class="blog-header">
-                                <span class="blog-category">Introduction</span>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-date">November 22, 2024</div>
-                                <h3 class="blog-title">Welcome to My Academic Blog</h3>
-                                <p class="blog-excerpt">
-                                    I'm thrilled to share this space where I can connect with you, 
-                                    whether you're a fellow researcher, a student, or simply someone 
-                                    curious about the fascinating world of neuroscience and decision-making...
-                                </p>
-                                <a target="_blank" rel="noopener noreferrer" href="https://choi.quarto.pub/blogs/posts/welcome/" class="btn btn-theme-outline btn-sm">
-                                    Read More
-                                </a>
-                            </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="selfie-container">
+                        <img src="images/profile.jpg" alt="Researcher Selfie 1" class="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="selfie-container mt-8">
+                        <img src="images/shengbin.png" alt="Researcher Selfie 2" class="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section-card p-8 md:p-12">
+            <h2 class="text-3xl font-bold mb-8 text-center animate-on-scroll">Education</h2>
+            <div class="relative container mx-auto px-6 flex flex-col space-y-8">
+                <div class="absolute z-0 w-2 h-full bg-neutral-800 shadow-md inset-0 left-1/2 -ml-1" style="background-color: var(--timeline-line);"></div>
+                <!-- PhD -->
+                <div class="relative z-10 timeline-item">
+                    <div class="timeline-marker w-8 h-8 rounded-full border-4 absolute left-1/2 -ml-4"></div>
+                    <div class="timeline-content timeline-content-right md:w-1/2 md:pr-8 md:text-right">
+                        <h3 class="text-xl font-semibold">Ph.D. in Brain Physiology</h3>
+                        <p class="text-neutral-400">The University of Osaka, Japan, 2022-2025</p>
+                        <p class="mt-2 text-sm">Dissertation: "Interoceptive Brain Processing Influences Moral Decision Making"</p>
+                    </div>
+                </div>
+                <!-- MSc -->
+                <div class="relative z-10 timeline-item">
+                    <div class="timeline-marker w-8 h-8 rounded-full border-4 absolute left-1/2 -ml-4"></div>
+                    <div class="timeline-content timeline-content-left md:w-1/2 md:ml-auto md:pl-8">
+                        <h3 class="text-xl font-semibold">M.Sc. in Cognitive Psychology</h3>
+                        <p class="text-neutral-400">Hiroshima University, Japan, 2019-2021</p>
+                        <p class="mt-2 text-sm">Focus: Linguistic influence on visual motion perception</p>
+                    </div>
+                </div>
+                <!-- BA -->
+                <div class="relative z-10 timeline-item">
+                    <div class="timeline-marker w-8 h-8 rounded-full border-4 absolute left-1/2 -ml-4"></div>
+                    <div class="timeline-content timeline-content-right md:w-1/2 md:pr-8 md:text-right">
+                        <h3 class="text-xl font-semibold">B.A. in English</h3>
+                        <p class="text-neutral-400">Zhengzhou University, China, 2013-2017</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Topics Section -->
+        <section id="research-topics" class="section-card p-8 md:p-12 animate-on-scroll">
+            <h2 class="text-3xl font-bold mb-8 text-center">Research Topics</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="research-topic-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 6l12-3" /></svg>
+                            <p class="font-semibold">Interoception</p>
+                        </div>
+                        <div class="card-back">
+                            <p>I investigate how heartbeat-evoked potentials (HEP) and related bodily signals are represented in cortex and how these interoceptive cues shape perception, attention, and valuation across tasks.</p>
                         </div>
                     </div>
-                    
-                    <div class="col-md-4">
-                        <div class="blog-card shadow-sm">
-                            <div class="blog-header">
-                                <span class="blog-category">Research</span>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-date">November 23, 2024</div>
-                                <h3 class="blog-title">What is Interoception?</h3>
-                                <p class="blog-excerpt">
-                                    When we think about our senses that shape our experience of the world, 
-                                    the usual candidates come to mind: vision, hearing, taste, touch, and smell. 
-                                    These senses provide us with a constant stream...
-                                </p>
-                                <a target="_blank" rel="noopener noreferrer" href="https://choi.quarto.pub/blogs/posts/20241123/" class="btn btn-theme-outline btn-sm">
-                                    Read More
-                                </a>
-                            </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="research-topic-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 10c0-3.314-2.462-6-5.5-6S6.5 6.686 6.5 10s2.462 6 5.5 6c1.43 0 2.747-.543 3.75-1.429" /><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 10c0 3.314-2.462 6-5.5 6S6.5 13.314 6.5 10m11 0h-11m9.5 3.5c.346-.922.5-1.922.5-2.955 0-3.314-2.462-6-5.5-6s-5.5 2.686-5.5 6c0 1.033.154 2.033.5 2.955M16 13.5a5.485 5.485 0 01-4.5 2.455A5.485 5.485 0 017 13.5m9-3a5.485 5.485 0 00-4.5-2.455A5.485 5.485 0 007 10.5" /></svg>
+                            <p class="font-semibold">Social Decision-Making</p>
+                        </div>
+                        <div class="card-back">
+                            <p>I study neural mechanisms of moral choices and face-based trustworthiness judgments, testing how interoceptive processing (e.g., HEP) and large-scale networks such as precuneus/PCC and vmPFC contribute to evaluating others and guiding social behavior.</p>
                         </div>
                     </div>
-                    
-                    <div class="col-md-4">
-                        <div class="blog-card shadow-sm">
-                            <div class="blog-header">
-                                <span class="blog-category">Events</span>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-date">November 24, 2024</div>
-                                <h3 class="blog-title">I delivered a speech today</h3>
-                                <p class="blog-excerpt">
-                                    Today, I talked about my research on cortical interoceptive processing 
-                                    and moral decision-making on 心理学留学生 Talk Time 2024...
-                                </p>
-                                <a target="_blank" rel="noopener noreferrer" href="https://choi.quarto.pub/blogs/posts/20241124/" class="btn btn-theme-outline btn-sm">
-                                    Read More
-                                </a>
-                            </div>
+                </div>
+                    <!-- Card 3 -->
+                <div class="research-topic-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <p class="font-semibold">Visual Neuroscience</p>
                         </div>
+                        <div class="card-back">
+                            <p>I use inverted encoding models to reconstruct orientation-selective population codes, examining how task demands and attention modulate the fidelity of visual feature representations.</p>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Card 4 -->
+                <div class="research-topic-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                            <p class="font-semibold">Music & Emotion</p>
+                        </div>
+                        <div class="card-back">
+                            <p>I explore how rhythm, meter, and predictive timing influence perception and affect, linking temporal expectations and bodily states to the experience of musical structure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Methods Section -->
+        <section id="research-methods" class="section-card p-8 md:p-12 animate-on-scroll">
+            <h2 class="text-3xl font-bold mb-8 text-center">Research Methods</h2>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
+                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
+                    <span class="text-4xl">📡</span>
+                    <span class="font-semibold">EEG & MEG</span>
+                </li>
+                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
+                    <span class="text-4xl">🧲</span>
+                    <span class="font-semibold">Functional MRI (fMRI)</span>
+                </li>
+                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
+                    <span class="text-4xl">💻</span>
+                    <span class="font-semibold">Computational Modeling</span>
+                </li>
+                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
+                    <span class="text-4xl">📊</span>
+                    <span class="font-semibold">Behavior Studies</span>
+                </li>
+            </ul>
+        </section>
+
+
+        <!-- Publications Section -->
+        <section id="publications" class="section-card p-8 md:p-12 animate-on-scroll">
+            <h2 class="text-3xl font-bold mb-8 text-center">Publications</h2>
+            <div class="space-y-6">
+                <div class="publication-item pl-6 py-2">
+                    <p class="font-semibold">Cui, Shengbin & Nakano, Tamami. (2024). Interoceptive Brain Processing Influences Moral Decision Making. <span class="italic">Human Brain Mapping.</span></p>
+                    <a href="#" class="text-sm text-neutral-400 hover:text-white transition">https://doi.org/10.1002/hbm.70108</a>
+                </div>
+                <div class="publication-item pl-6 py-2">
+                    <p class="font-semibold">Cui, Shengbin & Ariga, Atsunori. (2020). Language-Based Modulation of the Stream/ounce judgment. <span class="italic">i-Perception.</span></p>
+                    <a href="#" class="text-sm text-neutral-400 hover:text-white transition">DOI: 10.1234/j.cognition.2023</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog & Music Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
+            <div id="blog" class="section-card p-8">
+                <h2 class="text-3xl font-bold mb-6">Blog: Mind Notes</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg">I delivered a speech today</h3>
+                        <p class="text-sm text-neutral-400">Today, I talked about my research on cortical interoceptive processing and moral decision-making on 心理学留学生 Talk Time 2024...<a href="https://choi.quarto.pub/blogs/posts/20241124/" class="btn btn-theme-outline btn-sm" class="text-white hover:underline read-more-link">Read more...<span class="arrow">→</span></a></p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">What is interoception?</h3>
+                        <p class="text-sm text-neutral-400">When we think about our senses that shape our experience of the world, the usual candidates come to mind: vision, hearing, taste, touch, and smell. These senses provide us with a constant... <a href="https://choi.quarto.pub/blogs/posts/20241123/" class="text-white hover:underline read-more-link">Read more...<span class="arrow">→</span></a></p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">Welcome to My Academic Blog</h3>
+                        <p class="text-sm text-neutral-400">I'm thrilled to share this space where I can connect with you, whether you're a fellow researcher, a student, or simply someone curious about the fascinating world of neuroscience and decision... <a href="https://choi.quarto.pub/blogs/posts/welcome/" class="text-white hover:underline read-more-link">Read more...<span class="arrow">→</span></a></p>
+                    </div>
+                </div>
+            </div>
+            <div id="music" class="section-card p-8">
+                <h2 class="text-3xl font-bold mb-6">Music: Sound Waves</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg">Spring Concert 2024</h3>
+                        <img src="images/orchestra.jpg" alt="Orchestra performance" class="img-fluid rounded-lg">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="section-padding bg-light" id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Get In Touch</h2>
-                    <div class="section-divider"></div>
-                    <p class="section-subtitle">Let's explore potential collaborations and research opportunities</p>
-                </div>
-                
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="contact-content text-center">
-                            <div class="contact-info mb-4">
-                                <div class="row g-4">
-                                    <div class="col-md-4">
-                                        <div class="contact-info-item">
-                                            <div class="contact-icon">
-                                                <i class="fas fa-envelope"></i>
-                                            </div>
-                                            <h4>Email</h4>
-                                            <a href="mailto:shengbin.cui.1230@gmail.com">shengbin.cui.1230@gmail.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="contact-info-item">
-                                            <div class="contact-icon">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                            <h4>Location</h4>
-                                            <p>Osaka University, Japan</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="contact-info-item">
-                                            <div class="contact-icon">
-                                                <i class="fas fa-globe"></i>
-                                            </div>
-                                            <h4>Social</h4>
-                                            <div class="contact-social">
-                                                <a href="https://x.com/1230Shengbin" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                                                    <i class="fab fa-twitter"></i>
-                                                </a>
-                                                <a href="https://github.com/ShengbCui" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                                    <i class="fab fa-github"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-cta mt-4">
-                                <p>If you're interested in my research or potential collaborations, please feel free to reach out!</p>
-                                <a class="btn btn-theme btn-lg mt-3" href="mailto:shengbin.cui.1230@gmail.com">Contact Me</a>
-                            </div>
-                        </div>
-                    </div>
+        <section id="contact" class="section-card p-8 md:p-12 text-center animate-on-scroll">
+            <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+            <p class="max-w-xl mx-auto text-neutral-300 mb-6">I'm always open to collaborations, discussions, or just a chat about music and the mind. Feel free to reach out.</p>
+            <div class="flex justify-center items-center space-x-6">
+                <a href="mailto:shengbin.cui.1230@gmail.com" class="text-neutral-400 contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                </a>
+                <a href="https://x.com/home" class="text-neutral-400 contact-icon">
+                    <!-- Twitter/X Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/shengbin-cui-64a539266/" class="text-neutral-400 contact-icon">
+                    <!-- LinkedIn Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                </a>
+                <div class="easter-egg-neuron">
+                    <!-- Easter Egg Neuron Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 1.045.38 2.01.998 2.753V10H7.5a2.5 2.5 0 0 0-2.5 2.5v0a2.5 2.5 0 0 0 2.5 2.5H10v1.248a4.502 4.502 0 1 0 4 0V15h2.5a2.5 2.5 0 0 0 2.5-2.5v0a2.5 2.5 0 0 0-2.5-2.5H14V9.253A4.503 4.503 0 0 0 12 2Z"/></svg>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="footer-info">
-                        <img src="images/shengbin.png" alt="Logo" width="40" height="40" class="mb-3">
-                        <h4>Choi Seongbin</h4>
-                        <p>PhD Student in Cognitive Neuroscience<br>Osaka University</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="footer-links">
-                        <h4>Quick Links</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#research">Research</a></li>
-                            <li><a href="#pubs">Publications</a></li>
-                            <li><a href="https://choi.quarto.pub/blogs/" target="_blank" rel="noopener noreferrer">Blog</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="copyright">Copyright © 2024 Choi Seongbin. All Rights Reserved.</p>
-                <div class="language-selector">
-                    <select class="form-select form-select-sm">
-                        <option selected>English</option>
-                        <option>日本語</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+    <footer class="text-center py-8 border-t border-neutral-800 text-neutral-500" style="border-color: var(--card-border); color: var(--text-subtle);">
+        <p>&copy; <span id="year"></span> Your Name. All Rights Reserved. 
+        <span id="easter-egg-note" class="cursor-pointer">♪</span>
+        </p>
     </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- Service Worker Registration -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful');
-                }).catch(function(error) {
-                    console.log('ServiceWorker registration failed: ', error);
-                });
-            });
-        }
-    </script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-    <!-- Particles.js for background effect -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    
-    <!-- Tilt.js for 3D hover effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script src="js/index.js" charset="utf-8"></script>
+        // --- Set current year in footer ---
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- Three.js Hero Canvas Animation ---
+        let scene, camera, renderer, particles, mouseX = 0, mouseY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        function initThreeJS() {
+            const container = document.getElementById('hero-canvas');
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+            camera.position.z = 1000;
+            scene = new THREE.Scene();
+            
+            const numParticles = 10000;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(numParticles * 3);
+            
+            for (let i = 0; i < numParticles; i++) {
+                const x = Math.random() * 2000 - 1000;
+                const y = Math.random() * 2000 - 1000;
+                const z = Math.random() * 2000 - 1000;
+                positions[i * 3] = x;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = z;
+            }
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const material = new THREE.PointsMaterial({ color: 0xffffff, size: 1.5, transparent: true, opacity: 0.7 });
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+            
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) / 2;
+            mouseY = (event.clientY - windowHalfY) / 2;
+        }
+
+        function animateThreeJS() {
+            requestAnimationFrame(animateThreeJS);
+            const time = Date.now() * 0.00005;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            
+            particles.rotation.x += 0.0005;
+            particles.rotation.y += 0.001;
+
+            renderer.render(scene, camera);
+        }
+        
+        initThreeJS();
+        animateThreeJS();
+
+        // --- Easter Eggs ---
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        const gameContainer = document.getElementById('game-container');
+        const pongCanvas = document.getElementById('pong-game');
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    konamiIndex = 0;
+                    launchPong();
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+        function launchPong() { /* ... Pong game logic ... */ }
+        const neuronIcon = document.querySelector('.easter-egg-neuron');
+        neuronIcon.addEventListener('click', () => {
+            neuronIcon.classList.add('fired');
+            setTimeout(() => neuronIcon.classList.remove('fired'), 500);
+        });
+        const musicNote = document.getElementById('easter-egg-note');
+        musicNote.addEventListener('click', () => console.log("Easter Egg Found! \"Music is the sound of emotion.\" - a thought, perhaps processed by the auditory cortex and limbic system."));
+
+        // --- Scroll Animations with IntersectionObserver ---
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => scrollObserver.observe(el));
+        
+        // New Observer for the more complex timeline animation
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% is visible for a better effect
+        
+        document.querySelectorAll('.timeline-item').forEach((el) => timelineObserver.observe(el));
+
+
+        // --- New: Interactive Spotlight Effect ---
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // --- Theme Switcher Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-toggle-sun');
+        const moonIcon = document.getElementById('theme-toggle-moon');
+        const htmlEl = document.documentElement;
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                htmlEl.classList.add('light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                if (particles) particles.material.color.setHex(0x333333);
+            } else {
+                htmlEl.classList.remove('light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                if (particles) particles.material.color.setHex(0xffffff);
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlEl.classList.contains('light') ? 'light' : 'dark';
+            if (currentTheme === 'light') {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        });
+
+        // Set initial theme based on saved preference or default
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
+
+
+    </script>
 </body>
 </html>
+
