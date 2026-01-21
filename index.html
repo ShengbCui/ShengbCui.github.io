@@ -1,617 +1,838 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Neuroscience Researcher</title>
+    <title>Shengbin Cui | The Neural Navigator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-grad-1: #0a0a0a;
-            --bg-grad-2: #1a1a1a;
-            --bg-grad-3: #0a0a0a;
-            --bg-grad-4: #232323;
-            --text-main: #e5e5e5;
-            --text-neutral: #a3a3a3;
-            --text-subtle: #737373;
-            --card-bg: rgba(16, 16, 16, 0.8);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --spotlight-bg: rgba(255, 255, 255, 0.08);
-            --link-color: #e5e5e5;
-            --timeline-line: #3f3f46;
-            --timeline-marker-bg: #e5e5e5;
-            --timeline-marker-border: #1a1a1a;
-            --publication-border: rgba(255, 255, 255, 0.2);
-            --publication-hover-border: #e5e5e5;
-            --publication-hover-bg: rgba(255, 255, 255, 0.1);
-            --method-bg: rgba(30, 30, 30, 0.5);
-            --method-hover-bg: rgba(40, 40, 40, 0.7);
+        body { margin: 0; overflow: hidden; background-color: #000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 1s ease; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        
+        /* Glassmorphism UI */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
 
-        html.light {
-            --bg-grad-1: #f5f5f5;
-            --bg-grad-2: #e7e7e7;
-            --bg-grad-3: #f5f5f5;
-            --bg-grad-4: #fafafa;
-            --text-main: #171717;
-            --text-neutral: #525252;
-            --text-subtle: #737373;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --card-border: rgba(0, 0, 0, 0.1);
-            --spotlight-bg: rgba(0, 0, 0, 0.05);
-            --link-color: #171717;
-            --timeline-line: #d4d4d4;
-            --timeline-marker-bg: #262626;
-            --timeline-marker-border: #f5f5f5;
-            --publication-border: rgba(0, 0, 0, 0.2);
-            --publication-hover-border: #262626;
-            --publication-hover-bg: rgba(0, 0, 0, 0.05);
-            --method-bg: rgba(245, 245, 245, 0.8);
-            --method-hover-bg: rgba(229, 229, 229, 0.9);
+        .text-glow {
+            text-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+            transition: text-shadow 0.5s ease;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-main);
-            background: linear-gradient(-45deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3), var(--bg-grad-4));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+        /* Loading Screen */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 50; display: flex; justify-content: center; align-items: center;
+            flex-direction: column; transition: opacity 1s ease-out;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .spinner {
+            width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite;
         }
-        .section-card {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative; /* Required for the spotlight effect */
-            overflow: hidden; /* Hide spotlight overflow */
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Custom Scrollbar for content areas */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 3px; }
+
+        .hidden-section { opacity: 0; pointer-events: none; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .visible-section { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+        .nav-dot { transition: all 0.3s ease; }
+        .nav-dot.active { background-color: #38bdf8; transform: scale(1.2); box-shadow: 0 0 10px #38bdf8; }
+
+        /* Floating Animation for UI elements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
-        /* New: Spotlight effect on section backgrounds */
-        .section-card::before {
-            content: "";
-            position: absolute;
-            top: var(--mouse-y, 50%);
-            left: var(--mouse-x, 50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle at center, var(--spotlight-bg) 0%, rgba(255, 255, 255, 0) 60%);
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        .section-card:hover::before {
-            opacity: 1;
-        }
-        .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-        html.light .section-card:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.05);
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-            color: var(--link-color);
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--link-color);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        /* New: Shimmer effect for intro images */
-        .selfie-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            display: inline-block;
-        }
-        .selfie-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            transform: translateX(-100%);
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: transform 0.8s ease;
-        }
-        .selfie-container:hover::after {
-            transform: translateX(100%);
-        }
-        .easter-egg-neuron:hover {
-            cursor: pointer;
-            filter: drop-shadow(0 0 5px #fff);
-        }
-        .easter-egg-neuron.fired {
-            animation: fire-pulse 0.5s ease-out;
-        }
-        @keyframes fire-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .publication-item {
-            border-left: 2px solid var(--publication-border);
-            transition: border-color 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-        .publication-item::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--publication-hover-bg), transparent);
-            transition: width 0.4s ease;
-            z-index: -1;
-        }
-        .publication-item:hover {
-            border-left-color: var(--publication-hover-border);
-        }
-        .publication-item:hover::after {
-            width: 100%;
-        }
-        .game-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-        .research-topic-card {
-            background-color: var(--method-bg);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            min-height: 180px;
-            perspective: 1000px;
-            border: 1px solid var(--card-border);
-        }
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        .research-topic-card:hover .card-inner {
-            transform: rotateY(180deg);
-        }
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .card-back {
-            transform: rotateY(180deg);
-            font-size: 0.9rem;
-            color: var(--text-neutral);
-        }
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* New: Education timeline animation */
-        @keyframes pulse-marker {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            50% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-        }
-        .timeline-item {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .timeline-item.is-visible {
-            opacity: 1;
-        }
-        .timeline-item.is-visible .timeline-marker {
-            animation: pulse-marker 1.5s ease-out 0.3s; /* Delay pulse */
-        }
-        .timeline-item .timeline-content {
-            opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            transition-delay: 0.5s;
-        }
-        .timeline-item.is-visible .timeline-content {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .timeline-content-right {
-            transform: translateX(40px);
-        }
-        .timeline-content-left {
-            transform: translateX(-40px);
-        }
-        .timeline-marker {
-            background-color: var(--timeline-marker-bg);
-            border-color: var(--timeline-marker-border);
-        }
-        /* New: Research Methods item hover */
-        .method-item {
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            background-color: var(--method-bg);
-        }
-        .method-item:hover {
-            transform: scale(1.05);
-            background-color: var(--method-hover-bg);
-        }
-        /* New: Blog/Music link hover */
-        .read-more-link .arrow {
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        .read-more-link:hover .arrow {
-            transform: translateX(5px);
-        }
-        /* New: Contact icon hover */
-        .contact-icon {
-            transition: transform 0.3s ease, color 0.3s ease;
-            color: var(--text-subtle);
-        }
-        .contact-icon:hover {
-            transform: scale(1.2);
-            color: var(--text-main);
-        }
+        .float-anim { animation: float 6s ease-in-out infinite; }
     </style>
+    
+    <!-- Import Maps for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Konami Code Game Overlay -->
-    <div id="game-container" class="game-overlay hidden">
-        <canvas id="pong-game" width="600" height="400"></canvas>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="spinner mb-4"></div>
+        <div class="text-cyan-400 tracking-widest text-sm uppercase">Initializing Neural Ocean...</div>
     </div>
 
-    <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-wider">SHENGBIN CUI</div>
-            <div class="flex items-center">
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#research-topics" class="nav-link">Research</a>
-                    <a href="#publications" class="nav-link">Publications</a>
-                    <a href="#blog" class="nav-link">Blog</a>
-                    <a href="#music" class="nav-link">Music</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="ml-6 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-200">
-                    <svg id="theme-toggle-sun" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="theme-toggle-moon" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+    <!-- 3D Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Main Overlay UI -->
+    <main class="relative z-10 w-full h-screen pointer-events-none flex flex-col justify-between p-6 md:p-12">
+        
+        <!-- Header -->
+        <header class="flex justify-between items-start pointer-events-auto w-full">
+            <div>
+                <h1 id="main-title" class="text-4xl md:text-6xl font-bold tracking-tighter text-white text-glow">SHENGBIN CUI</h1>
+                <p id="subtitle" class="text-cyan-300 tracking-[0.2em] text-sm md:text-base mt-2 uppercase">Neuroscientist // Navigator</p>
+            </div>
+            
+            <div class="flex gap-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="glass-panel p-3 rounded-full hover:bg-white/10 transition-all group" title="Switch Theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white group-hover:text-cyan-300">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+
+                <!-- Music Control -->
+                <button id="music-toggle" class="glass-panel p-3 rounded-full hover:bg-white/10 transition-all group" title="Toggle Audio">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white group-hover:text-cyan-300"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                 </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+        </header>
+
+        <!-- Right Side Navigation -->
+        <nav class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 pointer-events-auto z-50">
+            <div class="group flex items-center gap-4 flex-row-reverse cursor-pointer" onclick="scrollToSection(0)">
+                <div id="dot-0" class="nav-dot w-3 h-3 rounded-full bg-white/30 border border-white/50 active"></div>
+                <span class="text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-right">The Bridge</span>
+            </div>
+            <div class="group flex items-center gap-4 flex-row-reverse cursor-pointer" onclick="scrollToSection(1)">
+                <div id="dot-1" class="nav-dot w-3 h-3 rounded-full bg-white/30 border border-white/50"></div>
+                <span class="text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-right">Research Charts</span>
+            </div>
+            <!-- NEW SECTION -->
+            <div class="group flex items-center gap-4 flex-row-reverse cursor-pointer" onclick="scrollToSection(2)">
+                <div id="dot-2" class="nav-dot w-3 h-3 rounded-full bg-white/30 border border-white/50"></div>
+                <span class="text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-right">The Logbook</span>
+            </div>
+            <!-- NEW SECTION -->
+            <div class="group flex items-center gap-4 flex-row-reverse cursor-pointer" onclick="scrollToSection(3)">
+                <div id="dot-3" class="nav-dot w-3 h-3 rounded-full bg-white/30 border border-white/50"></div>
+                <span class="text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-right">Trajectory</span>
+            </div>
+            <div class="group flex items-center gap-4 flex-row-reverse cursor-pointer" onclick="scrollToSection(4)">
+                <div id="dot-4" class="nav-dot w-3 h-3 rounded-full bg-white/30 border border-white/50"></div>
+                <span class="text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-right">Symphony</span>
+            </div>
+            <div class="group flex items-center gap-4 flex-row-reverse cursor-pointer" onclick="scrollToSection(5)">
+                <div id="dot-5" class="nav-dot w-3 h-3 rounded-full bg-white/30 border border-white/50"></div>
+                <span class="text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity text-right">Signal</span>
+            </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#about" class="block py-2">About</a>
-            <a href="#research-topics" class="block py-2">Research</a>
-            <a href="#publications" class="block py-2">Publications</a>
-            <a href="#blog" class="block py-2">Blog</a>
-            <a href="#music" class="block py-2">Music</a>
-            <a href="#contact" class="block py-2">Contact</a>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
-        <div id="hero-canvas"></div>
-        <div class="hero-content">
-            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter">Exploring the Symphony of the Mind</h1>
-            <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-neutral-300">A Cognitive Neuroscience Researcher at the intersection of interoception, social decision-making, and music cognition.</p>
-        </div>
-    </section>
+        <!-- Content Sections -->
+        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
+            
+            <!-- Section 0: Intro (The Bridge) -->
+            <section id="section-0" class="visible-section absolute w-full max-w-4xl px-6 md:px-12 text-center">
+                <h2 class="text-5xl md:text-7xl font-light mb-6 opacity-90 italic font-serif">"The mind is an ocean."</h2>
+                <p id="intro-text" class="text-lg md:text-xl text-cyan-100 max-w-2xl mx-auto leading-relaxed glass-panel p-6 rounded-xl">
+                    Welcome aboard. I chart the uncharted waters of neural circuitry. 
+                    <br>Explore the depths below.
+                </p>
+            </section>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-16 space-y-24">
-        <!-- Introduction Section -->
-        <section id="about" class="section-card p-8 md:p-12 animate-on-scroll">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
-                <div class="md:col-span-2">
-                    <h2 class="text-3xl font-bold mb-6">Introduction</h2>
-                    <p class="mb-4 text-neutral-300">
-                        Welcome to my digital space. I am a cognitive neuroscience researcher fascinated by how our brains process complex auditory information, particularly music. My work aims to unravel the neural mechanisms underlying music perception and the profound emotional impact of music. I believe that by understanding how we perceive a symphony, we can better understand the architecture of the human mind itself.
+            <!-- Section 1: Research (The Charts) -->
+            <section id="section-1" class="hidden-section absolute w-full max-w-5xl px-6 flex flex-col md:flex-row gap-8 items-center pointer-events-auto">
+                <div class="md:w-1/2 glass-panel p-8 rounded-2xl border-l-4 border-cyan-500 transition-all duration-500">
+                    <h3 class="text-3xl font-bold mb-4 flex items-center gap-3">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0121 18.382V7.618a1 1 0 01-1.447-.894L15 7m0 13V7m0 0L9 17"></path></svg>
+                        Current Expeditions
+                    </h3>
+                    <ul class="space-y-4 text-sm md:text-base text-gray-200">
+                        <li class="hover:text-white transition-colors cursor-pointer border-b border-white/10 pb-2">
+                            <strong class="text-cyan-300 block">Interoceptionx</strong>
+                            Investigate how heartbeat-evoked potentials (HEP) and related bodily signals 
+                            are represented in cortex and how these interoceptive cues shape perception, 
+                            attention, and valuation across tasks.
+                        </li>
+                        <li class="hover:text-white transition-colors cursor-pointer border-b border-white/10 pb-2">
+                            <strong class="text-cyan-300 block">Social Decision-Making</strong>
+                            Study neural mechanisms of moral choices and face-based trustworthiness judgments, 
+                            testing how interoceptive processing (e.g., HEP) and large-scale networks such as 
+                            precuneus/PCC and vmPFC contribute to evaluating others and guiding social behavior.
+                        </li>
+                        <li class="hover:text-white transition-colors cursor-pointer">
+                            <strong class="text-cyan-300 block">Computational Modeling</strong>
+                            I use inverted encoding models to reconstruct orientation-selective population codes, 
+                            examining how task demands and attention modulate the fidelity of visual feature representations.
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 text-right">
+                    <div class="inline-block glass-panel p-4 rounded-full float-anim">
+                        <span class="text-6xl">🧠</span>
+                    </div>
+                    <h2 class="text-4xl font-bold mt-4">Research</h2>
+                    <p class="text-cyan-200 opacity-70">Mapping the Cognition.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Publications (The Logbook) -->
+            <section id="section-2" class="hidden-section absolute w-full max-w-4xl px-6 pointer-events-auto">
+                <div class="glass-panel p-8 rounded-2xl w-full">
+                    <div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                        <h2 class="text-3xl font-bold">The Logbook</h2>
+                        <span class="text-xs font-mono text-cyan-400">SELECTED PUBLICATIONS</span>
+                    </div>
+                    
+                    <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
+                        <!-- Paper 1 -->
+                        <div class="group">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-lg font-bold group-hover:text-cyan-300 transition-colors">Interceptice Brain Processing Influences Moral Decision-Making</h4>
+                                <span class="text-xs bg-white/10 px-2 py-1 rounded">2024</span>
+                            </div>
+                            <p class="text-sm text-gray-400 italic">Human Brain Mapping</p>
+                            <p class="text-sm text-gray-300 mt-1">Cui, Shengbin & Nakano, Tamami. "Interoceptive mechanism underlying moral decision-making process."</p>
+                        </div>
+
+                        <!-- Paper 2 -->
+                        <div class="group">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-lg font-bold group-hover:text-cyan-300 transition-colors">Language-Based Modulation of the Stream/Bounce Judgment</h4>
+                                <span class="text-xs bg-white/10 px-2 py-1 rounded">2020</span>
+                            </div>
+                            <p class="text-sm text-gray-400 italic">i-Perception</p>
+                            <p class="text-sm text-gray-300 mt-1">Cui, Shengbin & Ariga, Atsunori. "How visual motion perception is affected by semantic processing."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-xs uppercase tracking-widest text-cyan-400 hover:text-white border-b border-cyan-400 pb-1">View Full Google Scholar Profile</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: CV/Education (Trajectory) -->
+            <section id="section-3" class="hidden-section absolute w-full max-w-4xl px-6 pointer-events-auto">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/3 text-center md:text-right">
+                        <h2 class="text-4xl font-bold">Trajectory</h2>
+                        <p class="text-cyan-200 opacity-70">Academic History</p>
+                        <div class="mt-4 text-6xl opacity-20 rotate-90 md:rotate-0">⚓</div>
+                    </div>
+                    
+                    <div class="md:w-2/3 glass-panel p-8 rounded-2xl relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-10 top-8 bottom-8 w-0.5 bg-gradient-to-b from-cyan-500 to-transparent opacity-30"></div>
+                        
+                        <div class="space-y-8 pl-8">
+                            <!-- Item 1 -->
+                            <div class="relative">
+                                <div class="absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
+                                <span class="text-xs font-mono text-cyan-300">2025 - Present</span>
+                                <h4 class="text-xl font-bold">Postdoctoral Fellow</h4>
+                                <p class="text-sm text-gray-300">The University of Tokyo</p>
+                                <p class="text-xs text-gray-400 mt-1">Focus: Creativity</p>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="relative">
+                                <div class="absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-white/50 border border-white"></div>
+                                <span class="text-xs font-mono text-cyan-300">2022 - 2025</span>
+                                <h4 class="text-xl font-bold">Ph.D. in Brain Physiology</h4>
+                                <p class="text-sm text-gray-300">The University of Osaka</p>
+                                <p class="text-xs text-gray-400 mt-1">Thesis: "Interoceptive Brain Processing Influences Moral Decision-Making"</p>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="relative">
+                                <div class="absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-white/20 border border-white/50"></div>
+                                <span class="text-xs font-mono text-cyan-300">2019 - 2021</span>
+                                <h4 class="text-xl font-bold">Master's. in Cognitive Psychology</h4>
+                                <p class="text-sm text-gray-300">Hiroshima University</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Music (The Symphony) -->
+            <section id="section-4" class="hidden-section absolute w-full max-w-4xl px-6 text-center pointer-events-auto">
+                 <div class="glass-panel p-10 rounded-3xl mx-auto relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+                    <h3 class="text-3xl font-serif italic mb-6">The Clarinet & The Oscillation</h3>
+                    <p class="mb-8 text-gray-300">
+                        Music and Neuroscience share a rhythm. Just as a clarinet reed vibrates to create sound, 
+                        neurons oscillate to create consciousness.
                     </p>
-                    <p class="text-neutral-300">
-                        Beyond the lab, I'm an avid musician and music enthusiast, which constantly fuels my scientific curiosity. This website is a fusion of these two worlds—a place to share my research, thoughts on science, and musical explorations.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="selfie-container">
-                        <img src="images/profile.jpg" alt="Researcher Selfie 1" class="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex justify-center gap-6">
+                        <button class="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full transition-all border border-white/20">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span>Play Composition No. 1</span>
+                        </button>
+                        <button class="flex items-center gap-2 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full transition-all border border-white/10">
+                            <span>Spotify Profile</span>
+                        </button>
                     </div>
-                    <div class="selfie-container mt-8">
-                        <img src="images/shengbin.png" alt="Researcher Selfie 2" class="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300">
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <!-- Musical Notes Decoration -->
+                    <div class="absolute -bottom-10 -right-10 text-9xl opacity-5 rotate-12">♪</div>
+                    <div class="absolute -top-10 -left-10 text-9xl opacity-5 -rotate-12">♫</div>
+                 </div>
+            </section>
 
-        <!-- Education Section -->
-        <section id="education" class="section-card p-8 md:p-12">
-            <h2 class="text-3xl font-bold mb-8 text-center animate-on-scroll">Education</h2>
-            <div class="relative container mx-auto px-6 flex flex-col space-y-8">
-                <div class="absolute z-0 w-2 h-full bg-neutral-800 shadow-md inset-0 left-1/2 -ml-1" style="background-color: var(--timeline-line);"></div>
-                <!-- PhD -->
-                <div class="relative z-10 timeline-item">
-                    <div class="timeline-marker w-8 h-8 rounded-full border-4 absolute left-1/2 -ml-4"></div>
-                    <div class="timeline-content timeline-content-right md:w-1/2 md:pr-8 md:text-right">
-                        <h3 class="text-xl font-semibold">Ph.D. in Brain Physiology</h3>
-                        <p class="text-neutral-400">The University of Osaka, Japan, 2022-2025</p>
-                        <p class="mt-2 text-sm">Dissertation: "Interoceptive Brain Processing Influences Moral Decision Making"</p>
+            <!-- Section 5: Contact (Signal) -->
+            <section id="section-5" class="hidden-section absolute w-full max-w-3xl px-6 pointer-events-auto">
+                <div class="flex flex-col items-center">
+                    <!-- Rum Bottle Icon -->
+                    <div class="mb-6 relative group cursor-pointer">
+                        <div class="absolute inset-0 bg-amber-500 blur-xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
+                        <img src="https://img.icons8.com/color/96/rum-bottle.png" alt="Rum Bottle" class="relative z-10 w-24 h-24 drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500">
+                    </div>
+                    
+                    <div class="glass-panel p-8 rounded-2xl w-full text-center">
+                        <h2 class="text-3xl font-bold mb-2">Send a Signal</h2>
+                        <p class="text-gray-400 mb-6">Found a message in the bottle? Reply here.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                            <a href="#" class="block p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                                <div class="text-xs text-cyan-400 uppercase tracking-wider mb-1">Email</div>
+                                <div class="text-lg">shengbin.cui@gmail.com</div>
+                            </a>
+                            <a href="#" class="block p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                                <div class="text-xs text-cyan-400 uppercase tracking-wider mb-1">Github</div>
+                                <div class="text-lg">shengbcui</div>
+                            </a>
+                            <a href="#" class="block p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                                <div class="text-xs text-cyan-400 uppercase tracking-wider mb-1">Twitter/X</div>
+                                <div class="text-lg">@shengbcui</div>
+                            </a>
+                            <a href="#" class="block p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                                <div class="text-xs text-cyan-400 uppercase tracking-wider mb-1">Lab</div>
+                                <div class="text-lg">Chao Lab, IRCN, UTokyo, Japan</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- MSc -->
-                <div class="relative z-10 timeline-item">
-                    <div class="timeline-marker w-8 h-8 rounded-full border-4 absolute left-1/2 -ml-4"></div>
-                    <div class="timeline-content timeline-content-left md:w-1/2 md:ml-auto md:pl-8">
-                        <h3 class="text-xl font-semibold">M.Sc. in Cognitive Psychology</h3>
-                        <p class="text-neutral-400">Hiroshima University, Japan, 2019-2021</p>
-                        <p class="mt-2 text-sm">Focus: Linguistic influence on visual motion perception</p>
-                    </div>
-                </div>
-                <!-- BA -->
-                <div class="relative z-10 timeline-item">
-                    <div class="timeline-marker w-8 h-8 rounded-full border-4 absolute left-1/2 -ml-4"></div>
-                    <div class="timeline-content timeline-content-right md:w-1/2 md:pr-8 md:text-right">
-                        <h3 class="text-xl font-semibold">B.A. in English</h3>
-                        <p class="text-neutral-400">Zhengzhou University, China, 2013-2017</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Research Topics Section -->
-        <section id="research-topics" class="section-card p-8 md:p-12 animate-on-scroll">
-            <h2 class="text-3xl font-bold mb-8 text-center">Research Topics</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <div class="research-topic-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 6l12-3" /></svg>
-                            <p class="font-semibold">Interoception</p>
-                        </div>
-                        <div class="card-back">
-                            <p>I investigate how heartbeat-evoked potentials (HEP) and related bodily signals are represented in cortex and how these interoceptive cues shape perception, attention, and valuation across tasks.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="research-topic-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 10c0-3.314-2.462-6-5.5-6S6.5 6.686 6.5 10s2.462 6 5.5 6c1.43 0 2.747-.543 3.75-1.429" /><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 10c0 3.314-2.462 6-5.5 6S6.5 13.314 6.5 10m11 0h-11m9.5 3.5c.346-.922.5-1.922.5-2.955 0-3.314-2.462-6-5.5-6s-5.5 2.686-5.5 6c0 1.033.154 2.033.5 2.955M16 13.5a5.485 5.485 0 01-4.5 2.455A5.485 5.485 0 017 13.5m9-3a5.485 5.485 0 00-4.5-2.455A5.485 5.485 0 007 10.5" /></svg>
-                            <p class="font-semibold">Social Decision-Making</p>
-                        </div>
-                        <div class="card-back">
-                            <p>I study neural mechanisms of moral choices and face-based trustworthiness judgments, testing how interoceptive processing (e.g., HEP) and large-scale networks such as precuneus/PCC and vmPFC contribute to evaluating others and guiding social behavior.</p>
-                        </div>
-                    </div>
-                </div>
-                    <!-- Card 3 -->
-                <div class="research-topic-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <p class="font-semibold">Visual Neuroscience</p>
-                        </div>
-                        <div class="card-back">
-                            <p>I use inverted encoding models to reconstruct orientation-selective population codes, examining how task demands and attention modulate the fidelity of visual feature representations.</p>
-                        </div>
-                    </div>
-                </div>
-                    <!-- Card 4 -->
-                <div class="research-topic-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                            <p class="font-semibold">Music & Emotion</p>
-                        </div>
-                        <div class="card-back">
-                            <p>I explore how rhythm, meter, and predictive timing influence perception and affect, linking temporal expectations and bodily states to the experience of musical structure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- Research Methods Section -->
-        <section id="research-methods" class="section-card p-8 md:p-12 animate-on-scroll">
-            <h2 class="text-3xl font-bold mb-8 text-center">Research Methods</h2>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
-                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
-                    <span class="text-4xl">📡</span>
-                    <span class="font-semibold">EEG & MEG</span>
-                </li>
-                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
-                    <span class="text-4xl">🧲</span>
-                    <span class="font-semibold">Functional MRI (fMRI)</span>
-                </li>
-                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
-                    <span class="text-4xl">💻</span>
-                    <span class="font-semibold">Computational Modeling</span>
-                </li>
-                <li class="bg-black/20 p-6 rounded-lg flex flex-col items-center justify-center space-y-2 method-item">
-                    <span class="text-4xl">📊</span>
-                    <span class="font-semibold">Behavior Studies</span>
-                </li>
-            </ul>
-        </section>
-
-
-        <!-- Publications Section -->
-        <section id="publications" class="section-card p-8 md:p-12 animate-on-scroll">
-            <h2 class="text-3xl font-bold mb-8 text-center">Publications</h2>
-            <div class="space-y-6">
-                <div class="publication-item pl-6 py-2">
-                    <p class="font-semibold">Cui, Shengbin & Nakano, Tamami. (2024). Interoceptive Brain Processing Influences Moral Decision Making. <span class="italic">Human Brain Mapping.</span></p>
-                    <a href="#" class="text-sm text-neutral-400 hover:text-white transition">https://doi.org/10.1002/hbm.70108</a>
-                </div>
-                <div class="publication-item pl-6 py-2">
-                    <p class="font-semibold">Cui, Shengbin & Ariga, Atsunori. (2020). Language-Based Modulation of the Stream/ounce judgment. <span class="italic">i-Perception.</span></p>
-                    <a href="#" class="text-sm text-neutral-400 hover:text-white transition">DOI: 10.1234/j.cognition.2023</a>
-                </div>
+        <!-- Footer -->
+        <footer class="flex justify-between items-end pointer-events-auto text-xs text-white/40">
+            <div>
+                © 2026 Shengbin Cui<br>All rights reserved.
             </div>
-        </section>
-
-        <!-- Blog & Music Section -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
-            <div id="blog" class="section-card p-8">
-                <h2 class="text-3xl font-bold mb-6">Blog: Mind Notes</h2>
-                <div class="space-y-4">
-                    <div>
-                        <h3 class="font-semibold text-lg">I delivered a speech today</h3>
-                        <p class="text-sm text-neutral-400">Today, I talked about my research on cortical interoceptive processing and moral decision-making on 心理学留学生 Talk Time 2024... <a href="https://choi.quarto.pub/blogs/posts/20241124/"  class="text-white hover:underline read-more-link">Read more...<span class="arrow">→</span></a></p>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">What is interoception?</h3>
-                        <p class="text-sm text-neutral-400">When we think about our senses that shape our experience of the world, the usual candidates come to mind: vision, hearing, taste, touch, and smell. These senses provide us with a constant... <a href="https://choi.quarto.pub/blogs/posts/20241123/" class="text-white hover:underline read-more-link">Read more...<span class="arrow">→</span></a></p>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">Welcome to My Academic Blog</h3>
-                        <p class="text-sm text-neutral-400">I'm thrilled to share this space where I can connect with you, whether you're a fellow researcher, a student, or simply someone curious about the fascinating world of neuroscience and decision... <a href="https://choi.quarto.pub/blogs/posts/welcome/" class="text-white hover:underline read-more-link">Read more...<span class="arrow">→</span></a></p>
-                    </div>
-                </div>
+            <div class="text-right">
+                Lat: 42.3601° N<br>
+                Long: 71.0589° W
             </div>
-            <div id="music" class="section-card p-8">
-                <h2 class="text-3xl font-bold mb-6">Music: Sound Waves</h2>
-                <div class="space-y-4">
-                    <div>
-                        <h3 class="font-semibold text-lg">Spring Concert 2024</h3>
-                        <img src="images/orchestra.jpg" alt="Orchestra performance" class="img-fluid rounded-lg">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section-card p-8 md:p-12 text-center animate-on-scroll">
-            <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
-            <p class="max-w-xl mx-auto text-neutral-300 mb-6">I'm always open to collaborations, discussions, or just a chat about music and the mind. Feel free to reach out.</p>
-            <div class="flex justify-center items-center space-x-6">
-                <a href="mailto:shengbin.cui.1230@gmail.com" class="text-neutral-400 contact-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                </a>
-                <a href="https://x.com/home" class="text-neutral-400 contact-icon">
-                    <!-- Twitter/X Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/shengbin-cui-64a539266/" class="text-neutral-400 contact-icon">
-                    <!-- LinkedIn Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
-                </a>
-                <div class="easter-egg-neuron">
-                    <!-- Easter Egg Neuron Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 1.045.38 2.01.998 2.753V10H7.5a2.5 2.5 0 0 0-2.5 2.5v0a2.5 2.5 0 0 0 2.5 2.5H10v1.248a4.502 4.502 0 1 0 4 0V15h2.5a2.5 2.5 0 0 0 2.5-2.5v0a2.5 2.5 0 0 0-2.5-2.5H14V9.253A4.503 4.503 0 0 0 12 2Z"/></svg>
-                </div>
-            </div>
-        </section>
+        </footer>
     </main>
 
-    <footer class="text-center py-8 border-t border-neutral-800 text-neutral-500" style="border-color: var(--card-border); color: var(--text-subtle);">
-        <p>&copy; <span id="year"></span> Your Name. All Rights Reserved. 
-        <span id="easter-egg-note" class="cursor-pointer">♪</span>
-        </p>
-    </footer>
+    <!-- Shader Code for Custom Particles -->
+    <script type="x-shader/x-vertex" id="vertexshader">
+        attribute float scale;
+        void main() {
+            vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+            gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+        uniform vec3 color;
+        void main() {
+            if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
+            gl_FragColor = vec4( color, 1.0 );
+        }
+    </script>
 
-    <script>
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    <!-- Main Logic -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { Water } from 'three/addons/objects/Water.js';
+        import { Sky } from 'three/addons/objects/Sky.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-        // --- Set current year in footer ---
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // --- Three.js Hero Canvas Animation ---
-        let scene, camera, renderer, particles, mouseX = 0, mouseY = 0;
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
-
-        function initThreeJS() {
-            const container = document.getElementById('hero-canvas');
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-            camera.position.z = 1000;
-            scene = new THREE.Scene();
-            
-            const numParticles = 10000;
-            const geometry = new THREE.BufferGeometry();
-            const positions = new Float32Array(numParticles * 3);
-            
-            for (let i = 0; i < numParticles; i++) {
-                const x = Math.random() * 2000 - 1000;
-                const y = Math.random() * 2000 - 1000;
-                const z = Math.random() * 2000 - 1000;
-                positions[i * 3] = x;
-                positions[i * 3 + 1] = y;
-                positions[i * 3 + 2] = z;
+        let container;
+        let camera, scene, renderer;
+        let controls, water, sun, boat;
+        let particles, particleSystem;
+        let audioContext, oscillator, gainNode;
+        let sky, pmremGenerator;
+        
+        // State
+        let currentSection = 0;
+        const totalSections = 6; // Updated total sections
+        let isTransitioning = false;
+        
+        // Audio State
+        let isMusicPlaying = false;
+        let musicTimer = null;
+        
+        // Theme State
+        let currentTheme = 0; // 0: Default, 1: Neural, 2: Night
+        const themes = [
+            {
+                name: "Oceanic",
+                waterColor: 0x001e0f,
+                sunColor: 0xffffff,
+                particleColor: 0x38bdf8,
+                skyTurbidity: 10,
+                skyRayleigh: 2,
+                sunElevation: 2,
+                textColor: "text-cyan-300",
+                glowColor: "rgba(100, 200, 255, 0.5)"
+            },
+            {
+                name: "Neural Pulse",
+                waterColor: 0x006064, // Bright Teal
+                sunColor: 0x00ffff,
+                particleColor: 0x00ffff, // Electric Cyan
+                skyTurbidity: 2,
+                skyRayleigh: 4, // Deep Blue/Cyan sky
+                sunElevation: 5,
+                textColor: "text-cyan-400",
+                glowColor: "rgba(0, 255, 255, 0.8)"
+            },
+            {
+                name: "Deep Night",
+                waterColor: 0x020205, // Almost black
+                sunColor: 0xaaaaff, // Moonlike
+                particleColor: 0xffffff, // White stars
+                skyTurbidity: 10,
+                skyRayleigh: 0.5, // Dark space
+                sunElevation: 0.8, // Low moon
+                textColor: "text-indigo-300",
+                glowColor: "rgba(200, 200, 255, 0.3)"
             }
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        ];
 
-            const material = new THREE.PointsMaterial({ color: 0xffffff, size: 1.5, transparent: true, opacity: 0.7 });
-            particles = new THREE.Points(geometry, material);
-            scene.add(particles);
+        init();
+        animate();
 
-            renderer = new THREE.WebGLRenderer({ alpha: true });
+        function init() {
+            container = document.getElementById('canvas-container');
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 0.5;
             container.appendChild(renderer.domElement);
+
+            // Scene
+            scene = new THREE.Scene();
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
+            camera.position.set(30, 30, 100);
+
+            // Sun
+            sun = new THREE.Vector3();
+
+            // Water
+            const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
+
+            water = new Water(
+                waterGeometry,
+                {
+                    textureWidth: 512,
+                    textureHeight: 512,
+                    waterNormals: new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/waternormals.jpg', function (texture) {
+                        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                    }),
+                    sunDirection: new THREE.Vector3(),
+                    sunColor: 0xffffff,
+                    waterColor: 0x001e0f,
+                    distortionScale: 3.7,
+                    fog: scene.fog !== undefined
+                }
+            );
+            water.rotation.x = - Math.PI / 2;
+            scene.add(water);
+
+            // Sky
+            sky = new Sky();
+            sky.scale.setScalar(10000);
+            scene.add(sky);
+
+            pmremGenerator = new THREE.PMREMGenerator(renderer);
+
+            updateEnvironment();
+
+            // Procedural Yacht (Minimalist Modern Style)
+            boat = new THREE.Group();
+            scene.add(boat);
+
+            // Hull
+            const hullGeo = new THREE.CylinderGeometry(0, 2, 20, 5, 1);
+            hullGeo.rotateZ(Math.PI / 2);
+            hullGeo.scale(1, 0.5, 2); 
+            const hullMat = new THREE.MeshStandardMaterial({ 
+                color: 0xffffff, 
+                roughness: 0.1, 
+                metalness: 0.1 
+            });
+            const hull = new THREE.Mesh(hullGeo, hullMat);
+            hull.position.y = 1;
+            hull.castShadow = true;
+            hull.receiveShadow = true;
+            boat.add(hull);
             
-            document.addEventListener('mousemove', onDocumentMouseMove, false);
-            window.addEventListener('resize', onWindowResize, false);
+            // Deck
+            const deckGeo = new THREE.BoxGeometry(16, 0.5, 6);
+            const deckMat = new THREE.MeshStandardMaterial({ color: 0x8b5a2b }); // Teak wood
+            const deck = new THREE.Mesh(deckGeo, deckMat);
+            deck.position.y = 2.2;
+            boat.add(deck);
+
+            // Cabin/Glass Structure
+            const cabinGeo = new THREE.BoxGeometry(6, 2, 4);
+            const cabinMat = new THREE.MeshPhysicalMaterial({ 
+                color: 0x111111, 
+                transmission: 0.5,
+                opacity: 0.8,
+                roughness: 0,
+                metalness: 0.2
+            });
+            const cabin = new THREE.Mesh(cabinGeo, cabinMat);
+            cabin.position.set(-2, 3.5, 0);
+            boat.add(cabin);
+
+            // Mast
+            const mastGeo = new THREE.CylinderGeometry(0.2, 0.2, 25);
+            const mastMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+            const mast = new THREE.Mesh(mastGeo, mastMat);
+            mast.position.set(0, 14, 0);
+            boat.add(mast);
+
+            // Sails (Procedural Triangles)
+            const sailShape = new THREE.Shape();
+            sailShape.moveTo(0, 0);
+            sailShape.lineTo(8, 2);
+            sailShape.lineTo(0, 20);
+            const sailGeo = new THREE.ShapeGeometry(sailShape);
+            const sailMat = new THREE.MeshStandardMaterial({ 
+                color: 0xeeeeee, 
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.9
+            });
+            const sail1 = new THREE.Mesh(sailGeo, sailMat);
+            sail1.position.set(0.2, 4, 0);
+            boat.add(sail1);
+
+            const sailShape2 = new THREE.Shape();
+            sailShape2.moveTo(0, 0);
+            sailShape2.lineTo(-5, 1);
+            sailShape2.lineTo(0, 18);
+            const sailGeo2 = new THREE.ShapeGeometry(sailShape2);
+            const sail2 = new THREE.Mesh(sailGeo2, sailMat);
+            sail2.position.set(-0.2, 4, 0);
+            boat.add(sail2);
+            
+            // Rum Bottle (Low Poly) on Deck - ENHANCED VISIBILITY
+            const bottleGroup = new THREE.Group();
+            const botBodyGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.8);
+            const botNeckGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.4);
+            
+            // Added emissive property to make it glow/stand out
+            const botMat = new THREE.MeshPhysicalMaterial({ 
+                color: 0xffaa00, 
+                transmission: 0.2, // Lower transmission to make it more solid
+                opacity: 0.9,
+                roughness: 0.1,
+                emissive: 0xff4400,
+                emissiveIntensity: 0.2
+            });
+            
+            const botBody = new THREE.Mesh(botBodyGeo, botMat);
+            const botNeck = new THREE.Mesh(botNeckGeo, botMat);
+            botNeck.position.y = 0.6;
+            
+            // Cork
+            const corkGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.15);
+            const corkMat = new THREE.MeshStandardMaterial({ color: 0x5c4033 });
+            const cork = new THREE.Mesh(corkGeo, corkMat);
+            cork.position.y = 0.85;
+
+            bottleGroup.add(botBody, botNeck, cork);
+            
+            // Adjusted position and scale for better visibility
+            bottleGroup.position.set(4, 2.7, 1); 
+            bottleGroup.rotation.z = Math.PI / 8;
+            bottleGroup.scale.set(2.5, 2.5, 2.5); // 2.5x larger
+            
+            boat.add(bottleGroup);
+
+
+            // "Neural Constellation" (Stars that look like neurons)
+            const particleCount = 2000;
+            const geometry = new THREE.BufferGeometry();
+            const positions = [];
+            const scales = [];
+
+            for (let i = 0; i < particleCount; i++) {
+                // Sphere distribution
+                const r = 4000 * Math.random() + 2000;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                
+                const x = r * Math.sin(phi) * Math.cos(theta);
+                const y = Math.abs(r * Math.sin(phi) * Math.sin(theta)); // Keep mainly above water
+                const z = r * Math.cos(phi);
+
+                positions.push(x, y, z);
+                scales.push(Math.random() * 10 + 5);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geometry.setAttribute('scale', new THREE.Float32BufferAttribute(scales, 1));
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    color: { value: new THREE.Color(0x38bdf8) }, // Cyan neural color
+                },
+                vertexShader: document.getElementById('vertexshader').textContent,
+                fragmentShader: document.getElementById('fragmentshader').textContent,
+                transparent: true
+            });
+
+            particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+            
+            // Connections (Synapses)
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.15 });
+            const lineGeo = new THREE.BufferGeometry();
+            // We'll create a static set of lines for performance
+            const linePos = [];
+            for (let i = 0; i < 500; i++) {
+                 // Random points on sphere
+                const r = 3500;
+                const theta1 = Math.random() * Math.PI * 2;
+                const phi1 = Math.acos(2 * Math.random() - 1);
+                
+                const theta2 = theta1 + (Math.random() - 0.5) * 0.5; // Nearby
+                const phi2 = phi1 + (Math.random() - 0.5) * 0.5;
+
+                const x1 = r * Math.sin(phi1) * Math.cos(theta1);
+                const y1 = Math.abs(r * Math.sin(phi1) * Math.sin(theta1));
+                const z1 = r * Math.cos(phi1);
+
+                const x2 = r * Math.sin(phi2) * Math.cos(theta2);
+                const y2 = Math.abs(r * Math.sin(phi2) * Math.sin(theta2));
+                const z2 = r * Math.cos(phi2);
+                
+                if (y1 > 100 && y2 > 100) {
+                     linePos.push(x1, y1, z1, x2, y2, z2);
+                }
+            }
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+            const connections = new THREE.LineSegments(lineGeo, lineMat);
+            scene.add(connections);
+
+
+            // Orbit Controls (Restricted)
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.maxPolarAngle = Math.PI / 2 - 0.05;
+            controls.enableZoom = false;
+            controls.enablePan = false;
+            controls.rotateSpeed = 0.5;
+            controls.target.set(0, 10, 0);
+
+            // Audio Visualizer Setup
+            setupAudio();
+            setupThemeToggle();
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize);
+            window.addEventListener('wheel', onScroll);
+            
+            // Remove Loader
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = 0;
+                setTimeout(() => document.getElementById('loader').remove(), 1000);
+            }, 1500);
+        }
+
+        function updateEnvironment() {
+            const theme = themes[currentTheme];
+            const skyUniforms = sky.material.uniforms;
+            skyUniforms['turbidity'].value = theme.skyTurbidity;
+            skyUniforms['rayleigh'].value = theme.skyRayleigh;
+            skyUniforms['mieCoefficient'].value = 0.005;
+            skyUniforms['mieDirectionalG'].value = 0.8;
+
+            const phi = THREE.MathUtils.degToRad(90 - theme.sunElevation);
+            const theta = THREE.MathUtils.degToRad(180);
+            sun.setFromSphericalCoords(1, phi, theta);
+            sky.material.uniforms['sunPosition'].value.copy(sun);
+            
+            if (water) {
+                water.material.uniforms['sunDirection'].value.copy(sun).normalize();
+                water.material.uniforms['sunColor'].value.setHex(theme.sunColor);
+                water.material.uniforms['waterColor'].value.setHex(theme.waterColor);
+            }
+            
+            scene.environment = pmremGenerator.fromScene(sky).texture;
+        }
+
+        function setupThemeToggle() {
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                // Cycle theme
+                currentTheme = (currentTheme + 1) % themes.length;
+                const theme = themes[currentTheme];
+
+                // Update Three.js visuals
+                updateEnvironment();
+                
+                // Update Particles
+                if (particleSystem) {
+                    particleSystem.material.uniforms.color.value.setHex(theme.particleColor);
+                }
+
+                // Update UI text colors (CSS manipulation)
+                document.getElementById('subtitle').className = 
+                    `${theme.textColor} tracking-[0.2em] text-sm md:text-base mt-2 uppercase transition-colors duration-500`;
+                
+                // Update all text glows
+                const title = document.getElementById('main-title');
+                title.style.textShadow = `0 0 20px ${theme.glowColor}`;
+            });
+        }
+
+        function setupAudio() {
+            const btn = document.getElementById('music-toggle');
+            
+            btn.addEventListener('click', () => {
+                if (!audioContext) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioContext = new AudioContext();
+                }
+
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+
+                if (isMusicPlaying) {
+                    // Stop
+                    clearInterval(musicTimer);
+                    isMusicPlaying = false;
+                    btn.classList.remove('text-cyan-400');
+                    // Play Icon
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`;
+                } else {
+                    // Start
+                    isMusicPlaying = true;
+                    btn.classList.add('text-cyan-400');
+                    // Pause Icon (indicating it's playing)
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`;
+                    
+                    playSirenLoop();
+                }
+            });
+        }
+
+        function playSirenLoop() {
+            let beat = 0;
+            const bpm = 90;
+            const beatDur = 60000 / bpm; // ms
+            
+            // Initial play
+            step();
+            musicTimer = setInterval(step, beatDur);
+
+            function step() {
+                if (!isMusicPlaying) return;
+                const time = audioContext.currentTime;
+
+                // 1. Rhythm (Heartbeat Kick)
+                // Beat 0: Boom. Beat 2: lighter boom.
+                if (beat % 4 === 0) {
+                     playKick(time, 1.0);
+                } else if (beat % 4 === 2) {
+                     playKick(time, 0.6); // Offbeat pulse
+                }
+                
+                // Hi-hat tick for rhythm
+                if (beat % 1 === 0) {
+                    playTick(time);
+                }
+
+                // 2. Siren Melody (Procedural generation)
+                // 30% chance per beat to sing a note
+                if (Math.random() < 0.35) { 
+                     // F# Minor Pentatonic / Mysterious Scale
+                     const notes = [370, 440, 554, 293, 329, 277]; 
+                     const note = notes[Math.floor(Math.random() * notes.length)];
+                     // Random duration between 2 and 4 seconds
+                     const dur = 2 + Math.random() * 2;
+                     playVoice(time, note, dur); 
+                }
+
+                beat++;
+            }
+        }
+
+        function playKick(time, vol) {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.frequency.setValueAtTime(100, time);
+            osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5);
+            gain.gain.setValueAtTime(0.3 * vol, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.start(time);
+            osc.stop(time + 0.5);
+        }
+
+        function playTick(time) {
+             const osc = audioContext.createOscillator();
+             const gain = audioContext.createGain();
+             // High frequency noise burst simulation using FM
+             osc.frequency.setValueAtTime(8000, time);
+             gain.gain.setValueAtTime(0.015, time);
+             gain.gain.exponentialRampToValueAtTime(0.001, time + 0.05);
+             osc.connect(gain);
+             gain.connect(audioContext.destination);
+             osc.start(time);
+             osc.stop(time + 0.05);
+        }
+
+        function playVoice(time, freq, dur) {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+
+            osc.type = 'triangle'; // Richer sound for voice
+            osc.frequency.setValueAtTime(freq, time);
+            // Slide (Portamento) - characteristic of Sirens, drifting pitch
+            osc.frequency.linearRampToValueAtTime(freq + (Math.random() * 8 - 4), time + dur);
+
+            // Filter (Underwater muffling / distance)
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(600, time);
+            filter.frequency.linearRampToValueAtTime(1200, time + dur/2); // Swell brightness
+            filter.frequency.linearRampToValueAtTime(600, time + dur);
+
+            // Envelope (Swell in and out)
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(0.12, time + dur * 0.2); // Slow attack
+            gain.gain.linearRampToValueAtTime(0, time + dur); // Release
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            osc.start(time);
+            osc.stop(time + dur);
         }
 
         function onWindowResize() {
@@ -620,122 +841,118 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
-        function onDocumentMouseMove(event) {
-            mouseX = (event.clientX - windowHalfX) / 2;
-            mouseY = (event.clientY - windowHalfY) / 2;
+        let scrollTimeout;
+        function onScroll(event) {
+            if (isTransitioning) return;
+            clearTimeout(scrollTimeout);
+            
+            scrollTimeout = setTimeout(() => {
+                if (event.deltaY > 0) {
+                    // Down
+                    if (currentSection < totalSections - 1) {
+                        changeSection(currentSection + 1);
+                    }
+                } else {
+                    // Up
+                    if (currentSection > 0) {
+                        changeSection(currentSection - 1);
+                    }
+                }
+            }, 50);
         }
 
-        function animateThreeJS() {
-            requestAnimationFrame(animateThreeJS);
-            const time = Date.now() * 0.00005;
-            camera.position.x += (mouseX - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
+        // Global function for Nav clicks
+        window.scrollToSection = function(index) {
+            if (index !== currentSection && !isTransitioning) {
+                changeSection(index);
+            }
+        };
+
+        function changeSection(index) {
+            isTransitioning = true;
             
-            particles.rotation.x += 0.0005;
-            particles.rotation.y += 0.001;
+            // UI Transition
+            const oldSection = document.getElementById(`section-${currentSection}`);
+            const newSection = document.getElementById(`section-${index}`);
+            
+            // Dots
+            document.getElementById(`dot-${currentSection}`).classList.remove('active');
+            document.getElementById(`dot-${index}`).classList.add('active');
+
+            oldSection.classList.remove('visible-section');
+            oldSection.classList.add('hidden-section');
+            
+            setTimeout(() => {
+                newSection.classList.remove('hidden-section');
+                newSection.classList.add('visible-section');
+                currentSection = index;
+                isTransitioning = false;
+            }, 600);
+
+            // Camera Movement based on section
+            const targetPositions = [
+                { x: 30, y: 30, z: 100 },    // 0: Intro
+                { x: -50, y: 40, z: 60 },    // 1: Research (Side view)
+                { x: 0, y: 60, z: 0 },       // 2: Logbook (Satellite/Top Down view)
+                { x: 0, y: 10, z: -40 },     // 3: Trajectory (Stern/Back view)
+                { x: 0, y: 15, z: 40 },      // 4: Music (Close up deck)
+                { x: 8, y: 5, z: 5 }         // 5: Contact (Macro shot of Bottle)
+            ];
+            
+            const targetLookAt = [
+                { x: 0, y: 10, z: 0 },
+                { x: 0, y: 5, z: 0 },
+                { x: 0, y: 0, z: 0 },        // Look at center of boat from above
+                { x: 0, y: 5, z: 20 },       // Look forward from back
+                { x: 0, y: 10, z: 0 },
+                { x: 4, y: 3, z: 1 }         // Look directly at the bottle
+            ];
+
+            gsapCamera(targetPositions[index], targetLookAt[index]);
+        }
+
+        function gsapCamera(pos, look) {
+            const startPos = camera.position.clone();
+            const startLook = controls.target.clone();
+            const duration = 1500;
+            const startTime = Date.now();
+
+            function updateCamera() {
+                const now = Date.now();
+                const progress = Math.min((now - startTime) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+
+                camera.position.lerpVectors(startPos, new THREE.Vector3(pos.x, pos.y, pos.z), ease);
+                controls.target.lerpVectors(startLook, new THREE.Vector3(look.x, look.y, look.z), ease);
+                controls.update();
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCamera);
+                }
+            }
+            updateCamera();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = performance.now() * 0.001;
+
+            // Animate Water
+            if (water) water.material.uniforms['time'].value += 1.0 / 60.0;
+
+            // Animate Boat (Gentle rocking)
+            boat.position.y = Math.sin(time) * 0.5;
+            boat.rotation.x = Math.sin(time * 0.5) * 0.02;
+            boat.rotation.z = Math.sin(time * 0.3) * 0.03;
+
+            // Animate Particles (Neural Sky)
+            if (particleSystem) {
+                particleSystem.rotation.y = time * 0.02;
+            }
 
             renderer.render(scene, camera);
         }
-        
-        initThreeJS();
-        animateThreeJS();
-
-        // --- Easter Eggs ---
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        const gameContainer = document.getElementById('game-container');
-        const pongCanvas = document.getElementById('pong-game');
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    konamiIndex = 0;
-                    launchPong();
-                }
-            } else {
-                konamiIndex = 0;
-            }
-        });
-        function launchPong() { /* ... Pong game logic ... */ }
-        const neuronIcon = document.querySelector('.easter-egg-neuron');
-        neuronIcon.addEventListener('click', () => {
-            neuronIcon.classList.add('fired');
-            setTimeout(() => neuronIcon.classList.remove('fired'), 500);
-        });
-        const musicNote = document.getElementById('easter-egg-note');
-        musicNote.addEventListener('click', () => console.log("Easter Egg Found! \"Music is the sound of emotion.\" - a thought, perhaps processed by the auditory cortex and limbic system."));
-
-        // --- Scroll Animations with IntersectionObserver ---
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.animate-on-scroll').forEach((el) => scrollObserver.observe(el));
-        
-        // New Observer for the more complex timeline animation
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.5 }); // Trigger when 50% is visible for a better effect
-        
-        document.querySelectorAll('.timeline-item').forEach((el) => timelineObserver.observe(el));
-
-
-        // --- New: Interactive Spotlight Effect ---
-        document.querySelectorAll('.section-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // --- Theme Switcher Logic ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('theme-toggle-sun');
-        const moonIcon = document.getElementById('theme-toggle-moon');
-        const htmlEl = document.documentElement;
-
-        function setTheme(theme) {
-            if (theme === 'light') {
-                htmlEl.classList.add('light');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-                if (particles) particles.material.color.setHex(0x333333);
-            } else {
-                htmlEl.classList.remove('light');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-                if (particles) particles.material.color.setHex(0xffffff);
-            }
-            localStorage.setItem('theme', theme);
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlEl.classList.contains('light') ? 'light' : 'dark';
-            if (currentTheme === 'light') {
-                setTheme('dark');
-            } else {
-                setTheme('light');
-            }
-        });
-
-        // Set initial theme based on saved preference or default
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        setTheme(savedTheme);
-
-
     </script>
 </body>
 </html>
-
